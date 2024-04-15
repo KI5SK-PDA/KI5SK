@@ -33,4 +33,8 @@ public class CardController {
         return cardService.chargeCard(cno, amount);
     }
 
+    public Card deleteCard(String cno) {
+        return cardService.deleteCard(cno);
+    }
+
 }

@@ -52,10 +52,8 @@ public class CardDAOImpl implements CardDAO{
     }
 
     @Override
-    public void deleteCard(String cno) {
-        if(cno != null){
-            cards.remove(cno);
-        }
+    public Card deleteCard(String cno) {
+        return cards.remove(cno);
     }
 
     @Override

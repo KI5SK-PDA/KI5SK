@@ -44,8 +44,11 @@ public class CardServiceImpl implements CardService{
     }
 
     @Override
-    public void deleteCard(String cno) {
-
+    public Card deleteCard(String cno) {
+        if(cno != null){
+            return cardDAO.deleteCard(cno);
+        }
+        return null;
     }
 
     @Override

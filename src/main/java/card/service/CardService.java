@@ -12,6 +12,6 @@ public interface CardService {
     Card findCardByCno(String cno);
     List<Card> findCardsByUser(String uid);
     Card chargeCard(String cno, int amount);
-    void deleteCard(String cno);
+    Card deleteCard(String cno);
     Purchase purchase(String cno, String cpw, String store , Money money);//미정
 }
