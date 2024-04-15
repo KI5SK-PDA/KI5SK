@@ -25,4 +25,9 @@ public class Money {
     public Money subtract(Money money) {
         return new Money(this.amount - money.amount);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d 원", this.amount);
+    }
 }
