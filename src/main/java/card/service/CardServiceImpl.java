@@ -9,6 +9,7 @@ import common.vo.Money;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class CardServiceImpl implements CardService{
 
@@ -57,17 +58,16 @@ public class CardServiceImpl implements CardService{
     }
 
     public String newCardNo(){
-        Date date = new Date();
-        return changeCardFormat(date.getTime());
+        UUID uuid = UUID.randomUUID();
+        return changeCardFormat(uuid.toString().replaceAll("\\-",""));
     }
 
-    public String changeCardFormat(long date){
-        String cardNo = Long.toString(date);
+    public String changeCardFormat(String uuid){
         StringBuilder formattedCardNo = new StringBuilder();
-        formattedCardNo.append(cardNo.substring(0,3)).append("-");
-        formattedCardNo.append(cardNo.substring(3,7)).append("-");
-        formattedCardNo.append(cardNo.substring(7,11)).append("-");
-        formattedCardNo.append(cardNo.substring(11));
+        formattedCardNo.append(uuid.substring(0,4)).append("-");
+        formattedCardNo.append(uuid.substring(4,8)).append("-");
+        formattedCardNo.append(uuid.substring(8,12)).append("-");
+        formattedCardNo.append(uuid.substring(12,16));
         return formattedCardNo.toString();
     }
 }
