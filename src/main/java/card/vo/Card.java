@@ -1,4 +1,4 @@
-package card.model;
+package card.vo;
 
 import common.vo.Money;
 
@@ -9,12 +9,12 @@ public class Card {
     private Company company; // 카드 회사
     private Money money; // 잔액
 
-    public Card(String cno, String uid, String cpw, Company company, Money money) {
+    public Card(String cno, String uid, String cpw, Company company) {
         this.cno = cno;
         this.uid = uid;
         this.cpw = cpw;
         this.company = company;
-        this.money = money;
+        this.money = Money.of(0);
     }
 
     public String getCno() {
@@ -55,5 +55,16 @@ public class Card {
 
     public void setMoney(Money money) {
         this.money = money;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "cno='" + cno + '\'' +
+                ", uid='" + uid + '\'' +
+                ", cpw='" + cpw + '\'' +
+                ", company=" + company.toString() +
+                ", money=" + money.toInt() +
+                '}';
     }
 }

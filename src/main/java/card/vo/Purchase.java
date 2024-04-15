@@ -1,4 +1,4 @@
-package card.model;
+package card.vo;
 
 import common.vo.Money;
 
