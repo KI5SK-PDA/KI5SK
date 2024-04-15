@@ -2,7 +2,7 @@ package card.dao;
 
 import card.model.Card;
 import card.model.Purchase;
-import model.vo.Money;
+import common.vo.Money;
 
 import java.util.List;
 

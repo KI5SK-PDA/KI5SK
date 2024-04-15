@@ -1,6 +1,6 @@
 package card.model;
 
-import model.vo.Money;
+import common.vo.Money;
 
 public class Card {
     private String cno; // 카드 번호
