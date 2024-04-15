@@ -1,4 +1,4 @@
-package kiosk.controller.kiosk;
+package kiosk.controller;
 
 public interface KioskController {
 
