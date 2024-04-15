@@ -37,6 +37,9 @@ public class CardServiceImpl implements CardService{
 
     @Override
     public Card chargeCard(String cno, int amount) {
+        if(cno != null){
+            return cardDAO.chargeCard(cno, Money.of(amount));
+        }
         return null;
     }
 

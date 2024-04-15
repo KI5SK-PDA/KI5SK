@@ -43,9 +43,10 @@ public class CardDAOImpl implements CardDAO{
     }
 
     @Override
-    public Card chargeCard(String cno, int amount) {
+    public Card chargeCard(String cno, Money money) {
         if(cno != null){
-            cards.get(cno).getMoney().add(Money.of(amount));
+            cards.get(cno).setMoney(cards.get(cno).getMoney().add(money));
+            return cards.get(cno);
         }
         return null;
     }

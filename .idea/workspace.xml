@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="77df237f-a12e-4eb1-bc1e-6cf2e42bf405" name="Changes" comment=":truck: refactor: refactor package">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kiosk/controller/kiosk/KioskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kiosk/controller/KioskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kiosk/controller/kiosk/KioskControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kiosk/controller/KioskControllerImpl.java" afterDir="false" />
-=======
-    <list default="true" id="77df237f-a12e-4eb1-bc1e-6cf2e42bf405" name="Changes" comment="feat: add card &amp; user repository init">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="dcc1a56d-9267-4041-8d75-dcebe7c5a8ff" name="변경" comment="feat: implement findCardsByUser and findCardByCno function">
       <change beforePath="$PROJECT_DIR$/src/main/java/card/controller/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/card/controller/CardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/card/model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/card/model/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/card/model/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/card/model/Company.java" afterDir="false" />
->>>>>>> 64c4bd89c413ba910c3a2e8d98905827bab03efa
+      <change beforePath="$PROJECT_DIR$/src/main/java/card/model/CardDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/card/model/CardDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/card/model/CardDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/card/model/CardDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/card/service/CardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/card/service/CardServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,179 +20,58 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;EastWon0103&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/KI5SK-PDA/KI5SK.git&quot;,
-    &quot;accountId&quot;: &quot;897cd779-a72f-40c9-a5b5-ed7764d76c08&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
-  <component name="ProjectId" id="2ezSNiwegRFBV9jmcADxWUyFx9U" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.KI5SK [dependencies].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "feat/repository",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/kwonkihyeon/Desktop/PDA/KI5SK",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "show.migrate.to.gradle.popup": "false",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
-  <component name="RunManager">
-    <configuration name="KI5SK [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Gradle.KI5SK [dependencies]" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="77df237f-a12e-4eb1-bc1e-6cf2e42bf405" name="Changes" comment="" />
-      <created>1712905876033</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1712905876033</updated>
-      <workItem from="1712905877060" duration="20949000" />
-    </task>
-    <task id="LOCAL-00001" summary=":tada: init project">
+    <task id="LOCAL-00001" summary="fix: gitignore">
       <option name="closed" value="true" />
-      <created>1712905908159</created>
+      <created>1713148416181</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1712905908159</updated>
+      <updated>1713148416181</updated>
     </task>
-<<<<<<< HEAD
-    <task id="LOCAL-00002" summary=":sparkles: feat: Money VO Object &amp; Skeleton">
+    <task id="LOCAL-00002" summary="feat: implement card-dao function except purchase">
       <option name="closed" value="true" />
-      <created>1713143240429</created>
+      <created>1713157840538</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1713143240429</updated>
-    </task>
-    <task id="LOCAL-00003" summary=":sparkles: feat: Repository interface">
-      <option name="closed" value="true" />
-      <created>1713144581720</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1713144581720</updated>
-    </task>
-    <task id="LOCAL-00004" summary=":truck: refactor: refactor package">
-      <option name="closed" value="true" />
-      <created>1713144653321</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1713144653321</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
-=======
-    <task id="LOCAL-00002" summary="feat: add card &amp; user repository init">
-      <option name="closed" value="true" />
-      <created>1713144923275</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1713144923275</updated>
+      <updated>1713157840538</updated>
     </task>
     <option name="localTasksCounter" value="3" />
->>>>>>> 64c4bd89c413ba910c3a2e8d98905827bab03efa
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":tada: init project" />
-<<<<<<< HEAD
-    <MESSAGE value=":sparkles: feat: Money VO Object &amp; Skeleton" />
-    <MESSAGE value=":sparkles: feat: Repository interface" />
-    <MESSAGE value=":truck: refactor: refactor package" />
-    <option name="LAST_COMMIT_MESSAGE" value=":truck: refactor: refactor package" />
-=======
-    <MESSAGE value="feat: add card &amp; user repository init" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add card &amp; user repository init" />
->>>>>>> 64c4bd89c413ba910c3a2e8d98905827bab03efa
+    <MESSAGE value="fix: gitignore" />
+    <MESSAGE value="feat: implement card-dao function except purchase" />
+    <MESSAGE value="feat: implement insertCard function" />
+    <MESSAGE value="feat: implement findCardsByUser and findCardByCno function" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement findCardsByUser and findCardByCno function" />
   </component>
 </project>

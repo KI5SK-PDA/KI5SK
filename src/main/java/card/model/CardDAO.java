@@ -10,7 +10,7 @@ public interface CardDAO {
     Card insertCard(Card card);
     Card findCardByCno(String cno);
     List<Card> findCardsByUser(String uid);
-    Card chargeCard(String cno, int amount);
+    Card chargeCard(String cno, Money money);
     void deleteCard(String cno);
     Purchase purchase(String cno, String cpw, String store , Money money);//미정
 }
