@@ -27,7 +27,7 @@ public class StoreRepository implements Repository<StoreId, Store> {
 
     @Override
     public Optional<Store> findById(StoreId storeId) {
-        return Optional.empty();
+        return Optional.ofNullable(storeMap.getOrDefault(storeId, null));
     }
 
     @Override
@@ -50,6 +50,11 @@ public class StoreRepository implements Repository<StoreId, Store> {
 
     @Override
     public void deleteById(StoreId storeId) {
+        storeMap.remove(storeId);
+    }
 
+    @Override
+    public void clear() {
+        storeMap.clear();
     }
 }
