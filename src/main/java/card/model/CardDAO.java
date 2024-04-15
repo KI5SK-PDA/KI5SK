@@ -2,7 +2,6 @@ package card.model;
 
 import card.vo.Card;
 import card.vo.Purchase;
-
 import common.vo.Money;
 import java.util.List;
 
