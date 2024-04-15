@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="77df237f-a12e-4eb1-bc1e-6cf2e42bf405" name="Changes" comment=":truck: refactor: refactor package">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kiosk/controller/kiosk/KioskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kiosk/controller/KioskController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kiosk/controller/kiosk/KioskControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kiosk/controller/KioskControllerImpl.java" afterDir="false" />
+=======
+    <list default="true" id="77df237f-a12e-4eb1-bc1e-6cf2e42bf405" name="Changes" comment="feat: add card &amp; user repository init">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/card/controller/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/card/controller/CardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/card/model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/card/model/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/card/model/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/card/model/Company.java" afterDir="false" />
+>>>>>>> 64c4bd89c413ba910c3a2e8d98905827bab03efa
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,21 +39,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "EastWon0103"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;EastWon0103&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KI5SK-PDA/KI5SK.git",
-    "accountId": "897cd779-a72f-40c9-a5b5-ed7764d76c08"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KI5SK-PDA/KI5SK.git&quot;,
+    &quot;accountId&quot;: &quot;897cd779-a72f-40c9-a5b5-ed7764d76c08&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2ezSNiwegRFBV9jmcADxWUyFx9U" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -55,10 +63,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.KI5SK [dependencies].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "feat/repository",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/kwonkihyeon/Desktop/PDA/KI5SK",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -92,7 +103,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -127,6 +138,7 @@
       <option name="project" value="LOCAL" />
       <updated>1712905908159</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00002" summary=":sparkles: feat: Money VO Object &amp; Skeleton">
       <option name="closed" value="true" />
       <created>1713143240429</created>
@@ -152,6 +164,17 @@
       <updated>1713144653321</updated>
     </task>
     <option name="localTasksCounter" value="5" />
+=======
+    <task id="LOCAL-00002" summary="feat: add card &amp; user repository init">
+      <option name="closed" value="true" />
+      <created>1713144923275</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713144923275</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+>>>>>>> 64c4bd89c413ba910c3a2e8d98905827bab03efa
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,9 +193,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":tada: init project" />
+<<<<<<< HEAD
     <MESSAGE value=":sparkles: feat: Money VO Object &amp; Skeleton" />
     <MESSAGE value=":sparkles: feat: Repository interface" />
     <MESSAGE value=":truck: refactor: refactor package" />
     <option name="LAST_COMMIT_MESSAGE" value=":truck: refactor: refactor package" />
+=======
+    <MESSAGE value="feat: add card &amp; user repository init" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add card &amp; user repository init" />
+>>>>>>> 64c4bd89c413ba910c3a2e8d98905827bab03efa
   </component>
 </project>
