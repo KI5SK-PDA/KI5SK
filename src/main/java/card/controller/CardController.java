@@ -2,6 +2,7 @@ package card.controller;
 
 import card.vo.Card;
 import card.vo.Company;
+import card.vo.Purchase;
 import common.vo.Money;
 
 import card.service.CardServiceImpl;
@@ -35,6 +36,10 @@ public class CardController {
 
     public Card deleteCard(String cno) {
         return cardService.deleteCard(cno);
+    }
+
+    public List<Purchase> findPurchasesByCno(String cno){
+        return cardService.findPurchasesByCno(cno);
     }
 
 }

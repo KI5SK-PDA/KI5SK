@@ -57,6 +57,13 @@ public class CardServiceImpl implements CardService{
         return null;
     }
 
+    public List<Purchase> findPurchasesByCno(String cno){
+        if(cno != null){
+            return cardDAO.findPurchasesByCno(cno);
+        }
+        return null;
+    }
+
     public String newCardNo(){
         UUID uuid = UUID.randomUUID();
         return changeCardFormat(uuid.toString().replaceAll("\\-",""));
@@ -64,10 +71,10 @@ public class CardServiceImpl implements CardService{
 
     public String changeCardFormat(String uuid){
         StringBuilder formattedCardNo = new StringBuilder();
-        formattedCardNo.append(uuid.substring(0,4)).append("-");
-        formattedCardNo.append(uuid.substring(4,8)).append("-");
-        formattedCardNo.append(uuid.substring(8,12)).append("-");
-        formattedCardNo.append(uuid.substring(12,16));
+        formattedCardNo.append(uuid.substring(0,4)).append("-")
+                        .append(uuid.substring(4,8)).append("-")
+                        .append(uuid.substring(8,12)).append("-")
+                        .append(uuid.substring(12,16));
         return formattedCardNo.toString();
     }
 }
