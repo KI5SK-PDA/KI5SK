@@ -1,4 +1,4 @@
-package model.vo;
+package common.vo;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
