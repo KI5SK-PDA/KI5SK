@@ -9,12 +9,14 @@ public class UserController {
     private UserInputHandler userInputHandler;
     private SignUpController signUpController;
     private LoginController loginController;
+    private LogoutController logoutController;
 
     public UserController() {
         this.userDAO = new UserDAOImpl();
         this.userInputHandler = new UserInputHandler();
         this.signUpController = new SignUpController(userDAO, userInputHandler);
         this.loginController = new LoginController(userDAO, userInputHandler);
+        this.logoutController = new LogoutController();
     }
 
     public void start() {
@@ -29,7 +31,7 @@ public class UserController {
                     loginController.login();
                     break;
                 case "3":
-                    loginController.logout();
+                    logoutController.logout();
                     break;
                 case "0":
                     System.out.println("Exiting program...");

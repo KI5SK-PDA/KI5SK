@@ -35,14 +35,4 @@ public class LoginController {
             System.out.println("login failure.");
         }
     }
-
-    public void logout() {
-        if (UserSession.getUser() != null) {
-            UserSession.setUser(null);
-            System.out.println("logout complete.");
-        }
-        else {
-            System.out.println("Log in First.");
-        }
-    }
 }
