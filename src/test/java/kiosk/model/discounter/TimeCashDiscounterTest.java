@@ -8,17 +8,16 @@ import java.time.LocalTime;
 
 @DisplayName("시간 현금 할인 테스트")
 class TimeCashDiscounterTest {
-    @DisplayName("생성 테스트")
+    @DisplayName("할인 가격 확인")
     @Test
     void generateDiscounterTest(){
         Money discountAmount = Money.of(500); // Sets the discount amount to 500 won
-        TimeCashDiscounter cashDiscounter = new TimeCashDiscounter(discountAmount, LocalTime.of(16, 0, 0), LocalTime.of(17, 0, 0));
+        TimeCashDiscounter cashDiscounter = new TimeCashDiscounter(discountAmount, LocalTime.of(18, 0, 0), LocalTime.of(19, 0, 0));
 
         Money originalPrice = Money.of(1000); // Example price
         Money discountedPrice = cashDiscounter.getDiscountPrice(originalPrice);
 
         System.out.println("할인 후 가격: " + discountedPrice);
         System.out.println(cashDiscounter.getDiscountInfo());
-
     }
 }
