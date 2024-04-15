@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77df237f-a12e-4eb1-bc1e-6cf2e42bf405" name="Changes" comment=":tada: init project">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/kiosk/Discounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="77df237f-a12e-4eb1-bc1e-6cf2e42bf405" name="Changes" comment=":sparkles: feat: Repository interface">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/kiosk/KioskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kiosk/controller/kiosk/KioskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/kiosk/KioskControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kiosk/controller/kiosk/KioskControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/kiosk/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kiosk/model/store/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/vo/Money.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/vo/Money.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,34 +24,29 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;EastWon0103&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "EastWon0103"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/KI5SK-PDA/KI5SK.git&quot;,
-    &quot;accountId&quot;: &quot;897cd779-a72f-40c9-a5b5-ed7764d76c08&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/KI5SK-PDA/KI5SK.git",
+    "accountId": "897cd779-a72f-40c9-a5b5-ed7764d76c08"
   }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
   <component name="ProjectId" id="2ezSNiwegRFBV9jmcADxWUyFx9U" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -59,17 +56,16 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.KI5SK [dependencies].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "feat/discounter",
+    "git-widget-placeholder": "feat/repository",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
@@ -103,6 +99,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -111,7 +115,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1712905876033</updated>
-      <workItem from="1712905877060" duration="18223000" />
+      <workItem from="1712905877060" duration="19933000" />
     </task>
     <task id="LOCAL-00001" summary=":tada: init project">
       <option name="closed" value="true" />
@@ -121,7 +125,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712905908159</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=":sparkles: feat: Money VO Object &amp; Skeleton">
+      <option name="closed" value="true" />
+      <created>1713143240429</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713143240429</updated>
+    </task>
+    <task id="LOCAL-00003" summary=":sparkles: feat: Repository interface">
+      <option name="closed" value="true" />
+      <created>1713144581720</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713144581720</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +149,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":tada: init project" />
-    <option name="LAST_COMMIT_MESSAGE" value=":tada: init project" />
+    <MESSAGE value=":sparkles: feat: Money VO Object &amp; Skeleton" />
+    <MESSAGE value=":sparkles: feat: Repository interface" />
+    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat: Repository interface" />
   </component>
 </project>
