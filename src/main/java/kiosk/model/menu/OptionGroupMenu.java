@@ -8,7 +8,7 @@ public class OptionGroupMenu {
     private final String id = UUID.randomUUID().toString();// id값이 있어야 하나?
     private List<OptionMenu> optionMenus;
 
-    private void updateOptionMenus(OptionMenu optionMenu){
+    public void updateOptionMenus(OptionMenu optionMenu){
         optionMenus.add(optionMenu);
     }
 
