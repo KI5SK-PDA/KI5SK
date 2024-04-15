@@ -5,7 +5,10 @@ build/
 !**/src/test/**/build/
 
 ### IntelliJ IDEA ###
+<<<<<<< HEAD
 .idea
+=======
+>>>>>>> f43a413f841f663972431973427aad2a4f6aedce
 .idea/**
 .idea/modules.xml
 .idea/jarRepositories.xml

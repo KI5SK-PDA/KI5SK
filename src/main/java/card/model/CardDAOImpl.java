@@ -4,13 +4,15 @@ import card.vo.Card;
 import card.vo.Purchase;
 import common.vo.Money;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CardDAOImpl implements CardDAO{
 
-    private HashMap<String, Card> cards;
-    private HashMap<String, Purchase> puchases;
+    private final HashMap<String, Card> cards;
+    private final HashMap<String, Purchase> puchases;
 
     public CardDAOImpl(){
         cards = new HashMap<>();
@@ -19,27 +21,45 @@ public class CardDAOImpl implements CardDAO{
 
     @Override
     public Card insertCard(Card card) {
+
+        if(card != null){
+            cards.put(card.getCno(), card);
+            return card;
+        }
         return null;
     }
 
     @Override
     public Card findCardByCno(String cno) {
-        return null;
+        if(cno == null) return null;
+        return cards.getOrDefault(cno, null);
     }
 
     @Override
     public List<Card> findCardsByUser(String uid) {
+        if(uid == null) return null;
+        List<Card> userCards = new ArrayList<>();
+        for(Map.Entry<String, Card> entry : cards.entrySet()){
+            if(uid.equals(entry.getValue().getUid())){
+                userCards.add(entry.getValue());
+            }
+        }
+        return userCards;
+    }
+
+    @Override
+    public Card chargeCard(String cno, int amount) {
+        if(cno != null){
+            cards.get(cno).getMoney().add(Money.of(amount));
+        }
         return null;
     }
 
     @Override
-    public void chargeCard(String cno, int amount) {
-
-    }
-
-    @Override
     public void deleteCard(String cno) {
-
+        if(cno != null){
+            cards.remove(cno);
+        }
     }
 
     @Override
