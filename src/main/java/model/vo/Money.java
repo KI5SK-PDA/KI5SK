@@ -3,7 +3,7 @@ package model.vo;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-
+/*
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
 public class Money {
@@ -26,3 +26,4 @@ public class Money {
         return new Money(this.amount - money.amount);
     }
 }
+*/

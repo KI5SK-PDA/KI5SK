@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="77df237f-a12e-4eb1-bc1e-6cf2e42bf405" name="Changes" comment=":tada: init project">
-      <change afterPath="$PROJECT_DIR$/src/main/java/card/controller/CardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/card/dao/CardDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/card/dao/CardDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/card/model/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/card/model/Company.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/card/model/Purchase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/user/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/user/dao/UserDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/user/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/KI5SKApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/KI5SKApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/vo/Money.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/vo/Money.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/user/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/user/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/user/dao/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/user/dao/UserDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/user/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/user/model/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,11 +23,21 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -61,11 +67,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.KI5SK [:KI5SKApp.main()].executor": "Run",
     "Gradle.KI5SK [dependencies].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feat/user",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/kwonkihyeon/Desktop/PDA/KI5SK",
     "node.js.detected.package.eslint": "true",
@@ -78,7 +85,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.KI5SKApp">
+    <configuration name="KI5SKApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="KI5SKApp" />
+      <module name="KI5SK.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="KI5SK [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -98,11 +112,12 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.KI5SKApp" />
         <item itemvalue="Gradle.KI5SK [dependencies]" />
       </list>
     </recent_temporary>
