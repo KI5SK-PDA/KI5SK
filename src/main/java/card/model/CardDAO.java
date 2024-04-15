@@ -1,15 +1,16 @@
-package card.model;
+package card.dao;
 
-import card.vo.Card;
-import card.vo.Purchase;
+import card.model.Card;
+import card.model.Purchase;
 import common.vo.Money;
+
 import java.util.List;
 
 public interface CardDAO {
-    Card insertCard(Card card);
+    void insertCard(Card card);
     Card findCardByCno(String cno);
     List<Card> findCardsByUser(String uid);
-    Card chargeCard(String cno, Money money);
-    Card deleteCard(String cno);
+    void chargeCard(String cno, int amount);
+    void deleteCard(String cno);
     Purchase purchase(String cno, String cpw, String store , Money money);//미정
 }
