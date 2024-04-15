@@ -21,17 +21,12 @@ public class CardDAOImpl implements CardDAO{
 
     @Override
     public Card insertCard(Card card) {
-
-        if(card != null){
-            cards.put(card.getCno(), card);
-            return card;
-        }
-        return null;
+        cards.put(card.getCno(), card);
+        return card;
     }
 
     @Override
     public Card findCardByCno(String cno) {
-        if(cno == null) return null;
         return cards.getOrDefault(cno, null);
     }
 
@@ -48,18 +43,17 @@ public class CardDAOImpl implements CardDAO{
     }
 
     @Override
-    public Card chargeCard(String cno, int amount) {
+    public Card chargeCard(String cno, Money money) {
         if(cno != null){
-            cards.get(cno).getMoney().add(Money.of(amount));
+            cards.get(cno).setMoney(cards.get(cno).getMoney().add(money));
+            return cards.get(cno);
         }
         return null;
     }
 
     @Override
-    public void deleteCard(String cno) {
-        if(cno != null){
-            cards.remove(cno);
-        }
+    public Card deleteCard(String cno) {
+        return cards.remove(cno);
     }
 
     @Override

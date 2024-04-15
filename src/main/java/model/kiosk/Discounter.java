@@ -1,6 +1,6 @@
 package model.kiosk;
 
-import model.vo.Money;
+import common.vo.Money;
 
 public interface Discounter {
     Money getDiscountPrice(Money price);
