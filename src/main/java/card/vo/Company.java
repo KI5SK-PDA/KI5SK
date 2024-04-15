@@ -48,4 +48,12 @@ public class Company {
     public void setDiscount(double discount) {
         this.discount = discount;
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "cname='" + cname + '\'' +
+                ", discount=" + discount +
+                '}';
+    }
 }

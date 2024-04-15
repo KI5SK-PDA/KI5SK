@@ -27,7 +27,6 @@ public class CardDAOImpl implements CardDAO{
 
     @Override
     public Card findCardByCno(String cno) {
-        if(cno == null) return null;
         return cards.getOrDefault(cno, null);
     }
 

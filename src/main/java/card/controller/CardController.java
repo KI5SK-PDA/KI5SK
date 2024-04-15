@@ -21,4 +21,14 @@ public class CardController {
         return cardService.insertCard(uid, pw, companyName);
     }
 
+    public List<Card> findCardsByUser(String uid) {
+        return cardService.findCardsByUser(uid);
+    }
+
+    public Card findCardByCno(String cno){
+        return cardService.findCardByCno(cno);
+    }
+
+    
+
 }

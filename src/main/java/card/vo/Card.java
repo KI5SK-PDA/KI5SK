@@ -56,4 +56,15 @@ public class Card {
     public void setMoney(Money money) {
         this.money = money;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "cno='" + cno + '\'' +
+                ", uid='" + uid + '\'' +
+                ", cpw='" + cpw + '\'' +
+                ", company=" + company.toString() +
+                ", money=" + money.toInt() +
+                '}';
+    }
 }

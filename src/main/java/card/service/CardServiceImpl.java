@@ -12,7 +12,7 @@ import java.util.List;
 
 public class CardServiceImpl implements CardService{
 
-    CardDAO cardDAO;
+    private CardDAO cardDAO;
 
     public CardServiceImpl(){
         cardDAO = new CardDAOImpl();
@@ -25,12 +25,14 @@ public class CardServiceImpl implements CardService{
 
     @Override
     public Card findCardByCno(String cno) {
+        if(cno != null)
+            return cardDAO.findCardByCno(cno);
         return null;
     }
 
     @Override
     public List<Card> findCardsByUser(String uid) {
-        return null;
+        return cardDAO.findCardsByUser(uid);
     }
 
     @Override
