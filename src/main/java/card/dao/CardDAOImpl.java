@@ -4,8 +4,10 @@ import card.model.Card;
 import card.model.Purchase;
 import model.vo.Money;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CardDAOImpl implements CardDAO{
 
@@ -18,28 +20,44 @@ public class CardDAOImpl implements CardDAO{
     }
 
     @Override
-    public void insertCard(Card card) {
-
+    public Card insertCard(Card card) {
+        if(card != null){
+            cards.put(card.getCno(), card);
+            return card;
+        }
+        return null;
     }
 
     @Override
     public Card findCardByCno(String cno) {
-        return null;
+        if(cno == null) return null;
+        return cards.getOrDefault(cno, null);
     }
 
     @Override
     public List<Card> findCardsByUser(String uid) {
-        return null;
+        if(uid == null) return null;
+        List<Card> userCards = new ArrayList<>();
+        for(Map.Entry<String, Card> entry : cards.entrySet()){
+            if(uid.equals(entry.getValue().getUid())){
+                userCards.add(entry.getValue());
+            }
+        }
+        return userCards;
     }
 
     @Override
     public void chargeCard(String cno, int amount) {
-
+        if(cno != null){
+            cards.get(cno).getMoney().add(Money.of(amount));
+        }
     }
 
     @Override
     public void deleteCard(String cno) {
-
+        if(cno != null){
+            cards.remove(cno);
+        }
     }
 
     @Override

@@ -7,7 +7,7 @@ import model.vo.Money;
 import java.util.List;
 
 public interface CardDAO {
-    void insertCard(Card card);
+    Card insertCard(Card card);
     Card findCardByCno(String cno);
     List<Card> findCardsByUser(String uid);
     void chargeCard(String cno, int amount);
