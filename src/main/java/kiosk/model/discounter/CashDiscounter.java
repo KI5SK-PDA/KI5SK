@@ -14,6 +14,6 @@ public abstract class CashDiscounter implements Discounter {
     }
 
     public String getDiscountInfo() {
-        return String.format("￦%,d 원 할인되었습니다", discountAmount.toInt());
+        return String.format("%,d 원 할인되었습니다", discountAmount.toInt());
     }
 }

@@ -10,12 +10,10 @@ public abstract class PercentageDiscounter implements Discounter {
     }
 
     public Money getDiscountPrice(Money price) {
-        double discountAmount = price.toInt() * discountRate;
-        int discountedPrice = price.toInt() - (int) Math.round(discountAmount);
-        return Money.of(discountedPrice);
+        return price.subtract(price.applyRate(discountRate));
     }
 
     public String getDiscountInfo() {
-        return String.format("%,2f%% 할인되었습니다.", discountRate * 100);
+        return String.format("%.1f%% 할인되었습니다.", discountRate * 100);
     }
 }
