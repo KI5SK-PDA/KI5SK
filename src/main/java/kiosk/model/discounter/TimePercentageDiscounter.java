@@ -8,7 +8,7 @@ public class TimePercentageDiscounter extends PercentageDiscounter {
     private final LocalTime startTime;
     private final LocalTime endTime;
 
-    TimePercentageDiscounter(double discountRate, LocalTime startTime, LocalTime endTime) {
+    TimePercentageDiscounter (double discountRate, LocalTime startTime, LocalTime endTime) {
         super(discountRate);
         this.startTime = startTime;
         this.endTime = endTime;
@@ -30,7 +30,7 @@ public class TimePercentageDiscounter extends PercentageDiscounter {
         }
     }
 
-    private boolean isDiscountTime() {
+    public boolean isDiscountTime() {
         LocalTime currentTime = LocalTime.now();
         return currentTime.isAfter(startTime) && currentTime.isBefore(endTime);
     }
