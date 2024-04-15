@@ -1,6 +1,6 @@
-package card.model;
+package card.vo;
 
-import model.vo.Money;
+import common.vo.Money;
 
 import java.util.Date;
 

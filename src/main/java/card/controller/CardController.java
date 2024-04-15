@@ -1,5 +1,19 @@
 package card.controller;
 
+import card.vo.Card;
+import card.vo.Company;
+import common.vo.Money;
+
+import card.service.CardServiceImpl;
 public class CardController {
     // 1. 카드 추가 & 2. 카드 조회 & 3. 카드 충전 & 4. 카드 삭제 & 5. 카드 충전
+    private final CardServiceImpl cardService;
+
+    public CardController(CardServiceImpl cardService) {
+        this.cardService = cardService;
+    }
+    // 카드 추가
+
+
+
 }

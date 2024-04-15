@@ -1,8 +1,8 @@
-package card.dao;
+package card.model;
 
-import card.model.Card;
-import card.model.Purchase;
-import model.vo.Money;
+import card.vo.Card;
+import card.vo.Purchase;
+import common.vo.Money;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +18,8 @@ public class CardDAOImpl implements CardDAO{
     }
 
     @Override
-    public void insertCard(Card card) {
-
+    public Card insertCard(Card card) {
+        return null;
     }
 
     @Override
