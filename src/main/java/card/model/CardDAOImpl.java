@@ -21,12 +21,8 @@ public class CardDAOImpl implements CardDAO{
 
     @Override
     public Card insertCard(Card card) {
-
-        if(card != null){
-            cards.put(card.getCno(), card);
-            return card;
-        }
-        return null;
+        cards.put(card.getCno(), card);
+        return card;
     }
 
     @Override
