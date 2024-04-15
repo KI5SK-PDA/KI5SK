@@ -26,6 +26,10 @@ public class Money {
         return new Money(this.amount - money.amount);
     }
 
+    public Money applyRate(double rate) {
+        return new Money((int) Math.round(amount * rate));
+    }
+
     @Override
     public String toString() {
         return String.format("%d 원", this.amount);
