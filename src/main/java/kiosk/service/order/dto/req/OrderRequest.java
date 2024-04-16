@@ -21,7 +21,7 @@ public class OrderRequest {
     static class SelectedMenuInfo {
         private String menuId;
         private int quantity;
-        private List<String> selectedOptions;
+        private List<String> selectedOptionIds;
     }
 }
 
