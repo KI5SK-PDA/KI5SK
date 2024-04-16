@@ -2,32 +2,35 @@ package user.controller;
 
 import user.dao.UserDAO;
 import user.view.UserInputHandler;
+import user.view.UserView;
 
 public class SignUpController {
     private UserDAO userDAO;
     private UserInputHandler userInputHandler;
+    private UserView userView;
 
-    public SignUpController(UserDAO userDAO, UserInputHandler userInputHandler) {
+    public SignUpController(UserDAO userDAO, UserInputHandler userInputHandler, UserView userView) {
         this.userDAO = userDAO;
         this.userInputHandler = userInputHandler;
+        this.userView = userView;
     }
 
     public void signUp() {
-        String uid = userInputHandler.getValidInput("id:");
+        String uid = userInputHandler.getValidIdOrPassword("id:");
         if (uid == null) return;
 
         if (userDAO.doesUserIdExist(uid)) {
-            System.out.println("id already exists");
+            userView.printIdAlreadyExists();
             return;
         }
 
-        String upw = userInputHandler.getValidInput("pw:");
+        String upw = userInputHandler.getValidIdOrPassword("pw:");
         if (upw == null) return;
 
         String uname = userInputHandler.getValidInput("name:");
         if (uname == null) return;
 
         userDAO.signUp(uid, upw, uname);
-        System.out.println("signup completed.");
+        userView.printSignupCompleted();
     }
 }

@@ -3,10 +3,12 @@ package user.controller;
 import user.dao.UserDAO;
 import user.dao.UserDAOImpl;
 import user.view.UserInputHandler;
+import user.view.UserView;
 
 public class UserController {
     private UserDAO userDAO;
     private UserInputHandler userInputHandler;
+    private UserView userView;
     private SignUpController signUpController;
     private LoginController loginController;
     private LogoutController logoutController;
@@ -14,9 +16,10 @@ public class UserController {
     public UserController() {
         this.userDAO = new UserDAOImpl();
         this.userInputHandler = new UserInputHandler();
-        this.signUpController = new SignUpController(userDAO, userInputHandler);
-        this.loginController = new LoginController(userDAO, userInputHandler);
-        this.logoutController = new LogoutController();
+        this.userView = new UserView();
+        this.signUpController = new SignUpController(userDAO, userInputHandler, userView);
+        this.loginController = new LoginController(userDAO, userInputHandler, userView);
+        this.logoutController = new LogoutController(userView);
     }
 
     public void start() {
@@ -34,10 +37,10 @@ public class UserController {
                     logoutController.logout();
                     break;
                 case "0":
-                    System.out.println("Exiting program...");
+                    userView.printMessage("Exiting program...");
                     return;
                 default:
-                    System.out.println("please select again.");
+                    userView.printMessage("please select again.");
                     break;
             }
         }

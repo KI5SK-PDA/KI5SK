@@ -14,9 +14,19 @@ public class UserInputHandler {
         System.out.println("1. signup / 2. login / 3. logout / 0. exit");
         return scanner.nextLine();
     }
+
     public String getValidInput(String prompt) {
         String input = getInput(prompt);
         if (!InputValidator.isValidInput(input)) {
+            System.out.println("invalid input");
+            return null;
+        }
+        return input;
+    }
+
+    public String getValidIdOrPassword(String prompt) {
+        String input = getInput(prompt);
+        if (!InputValidator.isValidIdOrPassword(input)) {
             System.out.println("invalid input");
             return null;
         }
