@@ -21,6 +21,13 @@ public class CardServiceImpl implements CardService{
 
     @Override
     public Card insertCard(String uid, String cpw, String companyName) {
+        if("".equals(companyName)){
+            System.out.println("은행 선택이 필요");
+            return null;
+        } else if("".equals(cpw)){
+            System.out.println("비밀번호 입력 필요");
+            return null;
+        }
         return cardDAO.insertCard(new Card(newCardNo(), uid, cpw, new Company(companyName)));
     }
 
@@ -37,11 +44,16 @@ public class CardServiceImpl implements CardService{
     }
 
     @Override
-    public Card chargeCard(String cno, int amount) {
-        if(cno != null){
-            return cardDAO.chargeCard(cno, Money.of(amount));
+    public Card chargeCard(String cno, String amount) {
+        try{
+            if(cno != null ){
+                return cardDAO.chargeCard(cno, Money.of(Integer.parseInt(amount)));
+            }
+            return null;
+        } catch(Error error){
+            System.out.println("카드 충전 과정 중 에러 : "+error);
+            return null;
         }
-        return null;
     }
 
     @Override

@@ -89,7 +89,7 @@ public class CardChargePanel extends UpdatableJPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for(int i = 0; i< jButtons.size(); i++){
             if(jButtons.get(i).equals(e.getSource())){
-                Card updatedCard = cardController.chargeCard(cards.get(i).getCno(), Integer.parseInt(tfMoney.getText()));
+                Card updatedCard = cardController.chargeCard(cards.get(i).getCno(), tfMoney.getText());
                 remove(jButtons.get(i));
                 JButton updatedButton = createCardView(i, updatedCard);
                 jButtons.set(i, updatedButton);

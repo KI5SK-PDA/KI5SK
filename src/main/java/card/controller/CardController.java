@@ -33,7 +33,7 @@ public class CardController {
         return cardService.findCardByCno(cno);
     }
 
-    public Card chargeCard(String cno, int amount){
+    public Card chargeCard(String cno, String amount){
         return cardService.chargeCard(cno, amount);
     }
 
