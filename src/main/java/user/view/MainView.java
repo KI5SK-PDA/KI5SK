@@ -5,6 +5,7 @@ import user.controller.LogoutController;
 import user.controller.SignUpController;
 
 public class MainView {
+    //CLI version , deprecated
 /*
     private UserView userView;
     private UserInputHandler userInputHandler;

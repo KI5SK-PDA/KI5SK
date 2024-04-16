@@ -18,12 +18,12 @@ public class UserController {
     public UserController() {
         this.userDAO = UserDAOImpl.getInstance();
         this.userInputHandler = new UserInputHandler();
-        this.userView = new UserView(userInputHandler);
+        this.userView = new UserView();
         this.signUpController = new SignUpController(userDAO);
         this.loginController = new LoginController(userDAO);
         this.logoutController = new LogoutController();
 
-        this.mainFrame = new MainFrame(userView, userInputHandler, signUpController, loginController, logoutController);
+        this.mainFrame = new MainFrame(userView, signUpController, loginController, logoutController);
     }
 
     public void start() {

@@ -3,6 +3,8 @@ package user.view;
 import java.util.Scanner;
 
 public class UserInputHandler {
+    //CLI version , deprecated
+    /*
     private Scanner scanner = new Scanner(System.in);
 
     public String getInput(String prompt) {
@@ -32,4 +34,6 @@ public class UserInputHandler {
         }
         return input;
     }
+
+     */
 }

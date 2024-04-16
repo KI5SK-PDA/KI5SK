@@ -4,10 +4,10 @@ import user.model.User;
 import java.util.HashMap;
 
 public class UserDAOImpl implements UserDAO {
-    private static UserDAOImpl instance; //singleton
+    private static UserDAOImpl instance;
     private HashMap<String, User> userMap = new HashMap<>();
 
-    private UserDAOImpl() {}
+    public UserDAOImpl() {}
     public static UserDAOImpl getInstance() {
         if (instance == null) {
             instance = new UserDAOImpl();
