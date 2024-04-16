@@ -24,19 +24,21 @@ public class MenuInfo {
     private int originalPrice;
     private Optional<Integer> discountPrice;
     private Optional<String> discountInfo;
-    private List<String> optionGroupIds;
-    private Map<String, List<String>> optionMenuIdsMap;
+    private Map<String, String> optionGroupMap;
+    private Map<String, List<OptionMenuInfo>> optionMenuMap;
 
     public static MenuInfo from(Menu menu){
-        List<String> optionGroupIds = menu.getOptionGroups().stream()
-                .map(OptionGroupMenu::getId)
-                .collect(Collectors.toList());
-
-        Map<String, List<String>> optionMenuIdsMap = menu.getOptionGroups().stream()
+        Map<String, String> optionGroupMap = menu.getOptionGroups().stream()
                 .collect(Collectors.toMap(
                         OptionGroupMenu::getId,
+                        OptionGroupMenu::getName
+                ));
+
+        Map<String, List<OptionMenuInfo>> optionMenuMap = menu.getOptionGroups().stream()
+                .collect(Collectors.toMap(
+                        optionGroupMenu -> optionGroupMenu.getId().toString(),
                         optionGroupMenu -> optionGroupMenu.getAllOptionMenus().stream()
-                                .map(OptionMenu::getId)
+                                .map(optionMenu -> new OptionMenuInfo(optionMenu.getId(), optionMenu.getName(), optionMenu.getPrice().toInt()))
                                 .collect(Collectors.toList())
                 ));
 
@@ -46,8 +48,8 @@ public class MenuInfo {
                 .originalPrice(menu.getOriginalPrice()==null? null: menu.getOriginalPrice().toInt())
                 .discountPrice(Optional.ofNullable(menu.getDiscountPrice() == null? null: menu.getDiscountPrice().toInt()))
                 .discountInfo(Optional.ofNullable(menu.getDiscountInfo()))
-                .optionGroupIds(optionGroupIds)
-                .optionMenuIdsMap(optionMenuIdsMap)
+                .optionGroupMap(optionGroupMap)
+                .optionMenuMap(optionMenuMap)
                 .build();
     }
 }
