@@ -27,6 +27,7 @@ public class MainFrame extends JFrame {
 
     private void initializeUI() {
         setTitle("KI5SK SERVICE");
+
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

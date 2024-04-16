@@ -2,13 +2,11 @@ package user.controller;
 
 import user.dao.UserDAO;
 import user.dao.UserDAOImpl;
-import user.view.UserInputHandler;
 import user.view.UserFrame;
 import user.view.MainFrame;
 
 public class MainController {
     private UserDAO userDAO;
-    private UserInputHandler userInputHandler;
     private UserFrame userFrame;
     private SignUpController signUpController;
     private LoginController loginController;
@@ -17,7 +15,6 @@ public class MainController {
 
     public MainController() {
         this.userDAO = UserDAOImpl.getInstance();
-        this.userInputHandler = new UserInputHandler();
         this.userFrame = new UserFrame();
         this.signUpController = new SignUpController(userDAO);
         this.loginController = new LoginController(userDAO);
