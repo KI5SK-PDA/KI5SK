@@ -32,7 +32,7 @@ public class Money {
 
     @Override
     public String toString() {
-        return String.format("%d 원", this.amount);
+        return String.format("%,d 원", this.amount);
     }
 }
 

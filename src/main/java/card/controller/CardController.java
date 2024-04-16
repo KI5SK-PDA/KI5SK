@@ -8,6 +8,8 @@ import card.vo.Card;
 import card.vo.Company;
 import card.vo.Purchase;
 import common.vo.Money;
+import view.card.CardFrame;
+
 
 import card.service.CardServiceImpl;
 import view.CardTest;
@@ -25,13 +27,17 @@ public class CardController {
         new CardTest(this);
     }
 
-    // 카드 추가
-    public Card insertCard(String uid, String companyName, String pw){
-        return cardService.insertCard(uid, pw, companyName);
+    public void runView(){
+        new CardFrame(this);
     }
-    // 카드 조회 - uid
-    public List<Card> findCardsByUser(String uid) {
-        return cardService.findCardsByUser(uid);
+
+    // 카드 추가
+    public Card insertCard(String companyName, String pw){
+        return cardService.insertCard("kkh", pw, companyName);
+    }
+
+    public List<Card> findCardsByUser() {
+        return cardService.findCardsByUser("kkh");
     }
 
     // 결제
@@ -43,6 +49,7 @@ public class CardController {
     public Card findCardByCno(String cno){
         return cardService.findCardByCno(cno);
     }
+
     // 카드 충전
     public Card chargeCard(String cno, int amount){
         return cardService.chargeCard(cno, amount);
@@ -52,6 +59,10 @@ public class CardController {
         return cardService.deleteCard(cno);
     }
     // 구매내역 조회
+    public List<Purchase> findPurchasesByCno(String cno){
+        return cardService.findPurchasesByCno(cno);
+    }
+
     public List<Purchase> findPurchasesByCno(String cno){
         return cardService.findPurchasesByCno(cno);
     }

@@ -1,15 +1,15 @@
 package kiosk.model.store;
 
 import common.vo.Money;
+import kiosk.model.menu.CategoryId;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class Store {
@@ -17,6 +17,23 @@ public class Store {
     private StoreId id;
     private String name;
     private Money balance;
+    private String imagePath;
+    private List<CategoryId> categoryIds; // TODO: Category ID로 바꾸기
+
+    private Store(String name, Money balance, String imagePath) {
+        this.name = name;
+        this.balance = balance;
+        this.imagePath = imagePath;
+        this.categoryIds = new ArrayList<>();
+    }
+
+    public static Store create(String name, Money balance,String imagePath) {
+        return new Store(name, balance, imagePath);
+    }
+
+    public void updateCategoryId(CategoryId categoryId) {
+        categoryIds.add(categoryId);
+    }
 
     @Override
     public String toString() {
