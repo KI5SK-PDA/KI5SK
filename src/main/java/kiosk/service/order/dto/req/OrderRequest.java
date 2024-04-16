@@ -11,6 +11,7 @@ import java.util.List;
 public class OrderRequest {
     private String cardNumber;
     private String cardPassword;
+    private String store;
     private List<SelectedMenuInfo> menus;
 
 
@@ -18,11 +19,12 @@ public class OrderRequest {
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     @Getter
-    static class SelectedMenuInfo {
-        private String menuId;
-        private int quantity;
-        private List<String> selectedOptions;
+    public static class SelectedMenuInfo {
+        public String menuId;
+        public int quantity;
+        public List<String> selectedOptionIds;
     }
+
 }
 
 
