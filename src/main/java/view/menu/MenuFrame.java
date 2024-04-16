@@ -5,6 +5,7 @@ import kiosk.service.menu.GetMenuService;
 import kiosk.service.menu.dto.res.CategoryInfo;
 import kiosk.service.menu.dto.res.MenuInfo;
 import kiosk.service.store.CommonStoreService;
+import view.controller.BasicTransition;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class MenuFrame extends JFrame {
     private List<JPanel> menuPanels = new ArrayList<>();
     private Box menuList = Box.createVerticalBox();
 
-    public MenuFrame(String storeId) {
+    public MenuFrame(String storeId, BasicTransition backToStore) {
         setTitle("메뉴");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(0,1, 20,20));
@@ -31,10 +32,23 @@ public class MenuFrame extends JFrame {
 
         Box sideBox = Box.createVerticalBox();
 
+        Box headerBox = Box.createHorizontalBox();
         JLabel header = new JLabel(storeService.getStoreById(storeId).getName());
         header.setFont(new Font("Arial", Font.BOLD, 40));
         header.setHorizontalAlignment(SwingConstants.CENTER);
-        sideBox.add(header);
+
+        JButton backButton = new JButton("뒤로 가기");
+        backButton.setFont(new Font("Arial", Font.BOLD, 20));
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backToStore.switchScreen();
+            }
+        });
+
+        headerBox.add(header);
+        headerBox.add(backButton);
+        sideBox.add(headerBox);
 
         ShoppingBasketPanel shoppingBasketPanel = new ShoppingBasketPanel();
         shoppingBasketPanel.setMaximumSize(new Dimension(480, 1080)); // 가로 480px, 세로는 제한 없음

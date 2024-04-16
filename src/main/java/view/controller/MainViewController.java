@@ -93,7 +93,7 @@ public class MainViewController {
         @Override
         public void switchMenu(String storeId) {
             storeFrame.dispose();
-            menuFrame = new MenuFrame(storeId);
+            menuFrame = new MenuFrame(storeId, new MenuToStoreFrameTransition());
         }
     }
 
@@ -122,6 +122,15 @@ public class MainViewController {
                 new SelectFrameToUserFrameTransition()
             );
             selectFrame.setVisible(true);
+        }
+    }
+
+    private class MenuToStoreFrameTransition implements BasicTransition {
+        @Override
+        public void switchScreen() {
+            menuFrame.dispose();
+            storeFrame = new StoreFrame(new StoreGridPanel(new StoreToMenuTransition()), new StoreToSelectFrameTransition());
+            storeFrame.setVisible(true);
         }
     }
 }
