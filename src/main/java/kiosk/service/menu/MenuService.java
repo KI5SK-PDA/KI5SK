@@ -55,12 +55,18 @@ public class MenuService implements GetMenuService, InsertMenuService {
     }
 
     @Override
-    public void insertBreakfastDiscountMenu(String categoryId, String name, int price) {
-        Menu.create(name, Money.of(price), Optional.of(new TimePercentageDiscounter()), CategoryId.of(categoryId))
+    public void insertNoDiscountMenu(String categoryId, String name, int price) {
+
     }
 
     @Override
-    public void insertEventDiscountMenu(String categoryId, String name, int price) {
+    public void insertTimePercentageDiscountMenu(String categoryId, String name, int price) {
 
     }
+
+    @Override
+    public void insertAlwaysCashDiscountMenu() {
+
+    }
+
 }
