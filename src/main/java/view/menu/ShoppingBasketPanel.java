@@ -1,8 +1,7 @@
 package view.menu;
 
 import kiosk.service.menu.dto.res.MenuInfo;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import view.purchase.PurchaseDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class ShoppingBasketPanel extends JPanel implements ActionListener {
 
@@ -21,15 +19,18 @@ public class ShoppingBasketPanel extends JPanel implements ActionListener {
     JPanel basketItemListPanel = new JPanel(); // 상품 목록 패널
     JLabel totalAmountLabel = new JLabel("총 결제금액: 0원"); //실제 결제금액 계산하도록
     JButton purchaseButton = new JButton("결제");
+    PurchaseDialog purchaseDialog;
 
     private int sumPrice;
 
-    private List<SelectedMenu> selectedMenus;
+//    private List<SelectedMenu> selectedMenus;
+    private JFrame parentFrame;
 
-    public ShoppingBasketPanel() {
+    public ShoppingBasketPanel(JFrame parentFrame) {
+        this.parentFrame = parentFrame;
         menus = new ArrayList<>();
 
-        selectedMenus = new ArrayList<>();
+//        selectedMenus = new ArrayList<>();
         sumPrice = 0;
 
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -49,21 +50,23 @@ public class ShoppingBasketPanel extends JPanel implements ActionListener {
         purchasePanel.add(purchaseButton);
         mainPanel.add(purchasePanel);
 
+        purchaseButton.addActionListener(this);
+
         this.add(mainPanel, BorderLayout.CENTER); //결제 onClick 이벤트 달기
     }
 
     public void addSelectedMenus(MenuInfo menu){
-        menus.add(menu);
-        selectedMenus.add(SelectedMenu.builder()
-                        .name(menu.getName())
-                        .id(menu.getId())
-                        .discountPrice(menu.getDiscountPrice())
-                        .originalPrice(menu.getOriginalPrice())
-                .build());
-
-        addSumPrice(menu);
-        viewSelectedMenus(menu);
-        updateUI();
+//        menus.add(menu);
+//        selectedMenus.add(SelectedMenu.builder()
+//                        .name(menu.getName())
+//                        .id(menu.getId())
+//                        .discountPrice(menu.getDiscountPrice())
+//                        .originalPrice(menu.getOriginalPrice())
+//                .build());
+//
+//        addSumPrice(menu);
+//        viewSelectedMenus(menu);
+//        updateUI();
     }
 
     public void addSumPrice(MenuInfo menu){
@@ -161,17 +164,18 @@ public class ShoppingBasketPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(purchaseButton.equals(e.getSource())){
             // 결제 창 구현
-
+            purchaseDialog = new PurchaseDialog(parentFrame, "결제");
+            purchaseDialog.setVisible(true);
         }
     }
 
-    @Builder
-    @AllArgsConstructor
-    private class SelectedMenu {
-        String id;
-        int originalPrice;
-        Optional<Integer> discountPrice;
-        int quantity;
-        String name;
-    }
+//    @Builder
+//    @AllArgsConstructor
+//    private class SelectedMenu {
+//        String id;
+//        int originalPrice;
+//        Optional<Integer> discountPrice;
+//        int quantity;
+//        String name;
+//    }
 }
