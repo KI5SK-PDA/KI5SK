@@ -16,10 +16,13 @@ public class SelectFrame extends JFrame implements ActionListener {
     JLabel laUser;
     private final BasicTransition toStore;
     private final BasicTransition toCard;
+    private final BasicTransition toUser;
 
-    public SelectFrame(BasicTransition toStore, BasicTransition toCard){
+    public SelectFrame(BasicTransition toStore, BasicTransition toCard, BasicTransition toUser){
         this.toStore = toStore;
         this.toCard = toCard;
+        this.toUser = toUser;
+
         setTitle("KI5SK");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 800);
@@ -59,7 +62,7 @@ public class SelectFrame extends JFrame implements ActionListener {
         } else if(btnKiosk.equals(e.getSource())){
             toStore.switchScreen();
         } else if(btnMain.equals(e.getSource())){
-
+            toUser.switchScreen();
         }
     }
 }

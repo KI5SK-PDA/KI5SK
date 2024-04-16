@@ -29,7 +29,11 @@ public class MainViewController {
                         new LoginController(),
                         new LogoutController(),
                         new UserFrameToSelectFrameTransition());
-//        selectFrame = new SelectFrame(new SelectFrameToStoreTransition(), new SelectFrameToCardTransition());
+//        selectFrame = new SelectFrame(
+//                new SelectFrameToStoreTransition(),
+//                new SelectFrameToCardTransition(),
+//                new SelectFrameToUserFrameTransition()
+//        );
         //        this.storeFrame = new StoreFrame(new StoreGridPanel(new StoreToMenuTransition()));
     }
 
@@ -46,7 +50,24 @@ public class MainViewController {
         @Override
         public void switchScreen(){
             userFrame.dispose();
-            selectFrame = new SelectFrame(new SelectFrameToStoreTransition(), new SelectFrameToCardTransition());
+            selectFrame = new SelectFrame(
+                    new SelectFrameToStoreTransition(),
+                    new SelectFrameToCardTransition(),
+                    new SelectFrameToUserFrameTransition()
+            );
+            selectFrame.setVisible(true);
+        }
+    }
+
+    private class CardFrameToSelectFrameTransition implements  BasicTransition{
+        @Override
+        public void switchScreen() {
+            cardFrame.dispose();
+            selectFrame = new SelectFrame(
+                    new SelectFrameToStoreTransition(),
+                    new SelectFrameToCardTransition(),
+                    new SelectFrameToUserFrameTransition()
+            );
             selectFrame.setVisible(true);
         }
     }
@@ -60,11 +81,11 @@ public class MainViewController {
         }
     }
 
-    private class SelectFrameToCardTransition implements  BasicTransition{
+    private class SelectFrameToCardTransition implements BasicTransition{
         @Override
         public void switchScreen() {
             selectFrame.dispose();
-            cardFrame = new CardFrame(new CardController());
+            cardFrame = new CardFrame(new CardController(), new CardFrameToSelectFrameTransition());
             cardFrame.setVisible(true);
         }
     }
@@ -74,6 +95,21 @@ public class MainViewController {
         public void switchMenu(String storeId) {
             storeFrame.dispose();
             menuFrame = new MenuFrame(storeId);
+        }
+    }
+
+    private class SelectFrameToUserFrameTransition implements BasicTransition{
+        @Override
+        public void switchScreen() {
+            selectFrame.dispose();
+            userFrame = new UserFrame(
+                    new PopUpFrame(),
+                    new SignUpController(),
+                    new LoginController(),
+                    new LogoutController(),
+                    new UserFrameToSelectFrameTransition()
+            );
+            userFrame.setVisible(true);
         }
     }
 }
