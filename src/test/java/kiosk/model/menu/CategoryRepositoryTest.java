@@ -22,8 +22,8 @@ public class CategoryRepositoryTest {
     @Test
     void saveAndRead(){
         Optional<Discounter> discounter = Optional.empty(); // 디스카운터 생성
-        OptionMenu optionMenu = new OptionMenu("옵션1", Money.of(1000)); // 옵션 생성
-        OptionGroupMenu group = new OptionGroupMenu("그룹1"); //옵션 카테고리 생성
+        OptionMenu optionMenu = OptionMenu.create("옵션1", Money.of(1000)); // 옵션 생성
+        OptionGroupMenu group = OptionGroupMenu.create("그룹1"); //옵션 카테고리 생성
         group.updateOptionMenus(optionMenu); // 옵션 카테고리에 옵션 넣음
 
         StoreId storeId = StoreId.of(1);

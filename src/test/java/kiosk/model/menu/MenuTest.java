@@ -21,8 +21,8 @@ class MenuTest {
         StoreId storeId = StoreId.of(1);
         CategoryId categoryId = CategoryId.of(storeId, 2);
 
-        OptionMenu optionMenu = new OptionMenu("옵션1", Money.of(1000));
-        OptionGroupMenu group = new OptionGroupMenu("그룹1");
+        OptionMenu optionMenu = OptionMenu.create("옵션1", Money.of(1000));
+        OptionGroupMenu group = OptionGroupMenu.create("그룹1");
         group.updateOptionMenus(optionMenu);
 
         System.out.println(group.getAllOptionMenus());
