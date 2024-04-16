@@ -102,6 +102,9 @@ public class CardDAOImpl implements CardDAO{
         Purchase newPurchase = new Purchase(pid, cno, date, discount_money, store);
         purchases.put(pid, newPurchase);
 
+        // 카드 잔고 업데이트
+        card.setMoney(discount_money);
+
         return new PurchaseDTO(cno, cpw, money, date, store);
     }
 }
