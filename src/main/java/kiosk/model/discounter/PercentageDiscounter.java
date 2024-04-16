@@ -3,13 +3,17 @@ package kiosk.model.discounter;
 import common.vo.Money;
 
 public abstract class PercentageDiscounter implements Discounter {
-    private double discountRate;
+    private final double discountRate;
+
+    PercentageDiscounter(double discountRate) {
+        this.discountRate = discountRate;
+    }
 
     public Money getDiscountPrice(Money price) {
-        return null;
+        return price.subtract(price.applyRate(discountRate));
     }
 
     public String getDiscountInfo() {
-        return null;
+        return String.format("%.1f%% 할인되었습니다.", discountRate * 100);
     }
 }
