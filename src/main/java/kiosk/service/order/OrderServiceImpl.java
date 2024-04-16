@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
                     .orElseThrow(() -> new RuntimeException("Can't find Category"));
 
             for(Menu menu: category.getMenus()) {
-                if(menu.getId().equals(MenuId.of(selectedMenuInfo.getMenuId()))) {
+                if(menu.getId().toString().equals(selectedMenuInfo.getMenuId())) {
                     totalPrice = totalPrice.add(menu.getDiscountPrice());
                     totalPrice = totalPrice.add(getSelectedOptionTotalPrice(menu, selectedMenuInfo.getSelectedOptionIds()));
                 }
