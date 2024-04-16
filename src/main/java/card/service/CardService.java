@@ -4,6 +4,7 @@ import card.vo.Card;
 import card.vo.Purchase;
 import common.vo.Money;
 
+import java.util.Date;
 import java.util.List;
 
 public interface CardService {
@@ -12,5 +13,13 @@ public interface CardService {
     List<Card> findCardsByUser(String uid);
     Card chargeCard(String cno, int amount);
     void deleteCard(String cno);
-    Purchase purchase(String cno, String cpw, String store , Money money);//미정
+
+
+
+    // 결제
+    boolean authenticateCard(String cno, String cpw);
+
+    boolean canPurchase(String cno, Money money);
+
+    Purchase purchase(String cno, String cpw, Date date, String store, Money money);
 }
