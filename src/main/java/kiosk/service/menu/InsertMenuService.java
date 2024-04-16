@@ -11,9 +11,9 @@ public interface InsertMenuService {
     String insertTimePercentageDiscountMenu(String categoryId, InsertMenuRequest insertMenuRequest);
     String insertAlwaysCashDiscountMenu(String categoryId, InsertMenuRequest insertMenuRequest);
 
-    void insertOptionGroup(String menuId, String name);
+    String insertOptionGroup(String menuId, String name);
 
-    void insertOptionMenu(String optionGroupId, List<OptionMenuInfo> optionMenus);
+    String insertOptionMenu(String menuId, String optionGroupId, String name, int price);
 }
 
 /*
