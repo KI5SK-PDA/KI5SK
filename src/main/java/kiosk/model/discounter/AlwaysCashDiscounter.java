@@ -4,7 +4,7 @@ import common.vo.Money;
 
 public class AlwaysCashDiscounter extends CashDiscounter {
 
-    AlwaysCashDiscounter(Money discountAmount) {
+    public AlwaysCashDiscounter(Money discountAmount) {
         super(discountAmount);
     }
 

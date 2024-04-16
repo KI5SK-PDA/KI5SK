@@ -24,8 +24,8 @@ public class MenuInfo {
         return MenuInfo.builder()
                 .id(menu.getId().toString())
                 .name(menu.getName())
-                .originalPrice(menu.getOriginalPrice().toInt())
-                .discountPrice(Optional.ofNullable(menu.getDiscountPrice().toInt()))
+                .originalPrice(menu.getOriginalPrice()==null? null: menu.getOriginalPrice().toInt())
+                .discountPrice(Optional.ofNullable(menu.getDiscountPrice() == null? null: menu.getDiscountPrice().toInt()))
                 .discountInfo(Optional.ofNullable(menu.getDiscountInfo())).build();
     }
 }
