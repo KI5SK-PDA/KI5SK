@@ -1,6 +1,8 @@
 package kiosk.service.menu;
 
 import common.vo.Money;
+import kiosk.model.discounter.AlwaysCashDiscounter;
+import kiosk.model.discounter.Discounter;
 import kiosk.model.discounter.TimePercentageDiscounter;
 import kiosk.model.menu.Category;
 import kiosk.model.menu.CategoryId;
@@ -9,8 +11,10 @@ import kiosk.model.menu.Menu;
 import kiosk.model.store.Store;
 import kiosk.model.store.StoreId;
 import kiosk.model.store.StoreRepository;
+import kiosk.service.menu.dto.req.InsertMenuRequest;
 import kiosk.service.menu.dto.res.CategoryInfo;
 import kiosk.service.menu.dto.res.MenuInfo;
+import kiosk.service.menu.dto.res.OptionMenuInfo;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -53,23 +57,70 @@ public class MenuService implements GetMenuService, InsertMenuService {
         return categoryInfos;
     }
 
-    @Override
-    public void insertCategory(String storeId, String name) {
 
+    @Override
+    public String insertCategory(String storeId, String name) {
+        Category category = Category.create(name);
+        Category newCategory = categoryRepository.create(category, StoreId.of(storeId));
+
+        return newCategory.getId().toString();
     }
 
     @Override
-    public void insertBreakfastDiscountMenu(String categoryId, String name, int price) {
-        Menu.create(
-                name,
-                Money.of(price),
-                Optional.of(
-                        new TimePercentageDiscounter(20, LocalTime.of(12,12), LocalTime.of(10,10))),
-                CategoryId.of(categoryId));
+    public String insertNoDiscountMenu(String categoryId, InsertMenuRequest insertMenuRequest) {
+        Category category = categoryRepository.findById(CategoryId.of(categoryId)).orElseThrow( // 각 카테고리 ID를 돌면서 카테고리 객체 가져옴
+                () -> new RuntimeException("Category not found"));
+
+        Money originalPrice = Money.of(insertMenuRequest.getOriginalPrice());
+        Menu menu = Menu.create(insertMenuRequest.getName(), originalPrice, Optional.empty(), CategoryId.of(categoryId));
+
+        category.updateMenus(menu);
+        return menu.getId().toString();
+    }
+
+    //시간비율할인 메뉴 생성
+    @Override
+    public String insertTimePercentageDiscountMenu(String categoryId, InsertMenuRequest insertMenuRequest) {
+        Category category = categoryRepository.findById(CategoryId.of(categoryId)).orElseThrow( // 각 카테고리 ID를 돌면서 카테고리 객체 가져옴
+                () -> new RuntimeException("Category not found"));
+
+
+        Money originalPrice = Money.of(insertMenuRequest.getOriginalPrice());
+        Discounter discounter = TimePercentageDiscounter.create(0.2, LocalTime.of(8, 0), LocalTime.of(11, 0));// 일단 고정
+        Menu menu = Menu.create(insertMenuRequest.getName(), originalPrice, Optional.of(discounter), CategoryId.of(categoryId));
+
+        category.updateMenus(menu);
+        return menu.getId().toString();
+    }
+
+
+    //항시 현금할인 생성
+    @Override
+    public String insertAlwaysCashDiscountMenu(String categoryId, InsertMenuRequest insertMenuRequest) {
+        Category category = categoryRepository.findById(CategoryId.of(categoryId)).orElseThrow( // 각 카테고리 ID를 돌면서 카테고리 객체 가져옴
+                () -> new RuntimeException("Category not found"));
+
+
+        Money originalPrice = Money.of(insertMenuRequest.getOriginalPrice());
+        Discounter discounter = AlwaysCashDiscounter.create(Money.of(10000));// 일단 고정
+        Menu menu = Menu.create(insertMenuRequest.getName(), originalPrice, Optional.of(discounter), CategoryId.of(categoryId));
+
+        category.updateMenus(menu);
+        return menu.getId().toString();
     }
 
     @Override
-    public void insertEventDiscountMenu(String categoryId, String name, int price) {
+    public void insertOptionGroup(String menuId, String name) {
+        Category category = categoryRepository.findById(CategoryId.of(toCategoryIdFrom(menuId))).orElseThrow(
+                () -> new RuntimeException("Category not found"));
+    }
 
+    @Override
+    public void insertOptionMenu(String optionGroupId, List<OptionMenuInfo> optionMenus) {
+
+    }
+
+    private String toCategoryIdFrom(String menuId) {
+        return menuId.substring(0, 6);
     }
 }
