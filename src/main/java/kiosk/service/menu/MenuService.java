@@ -113,7 +113,7 @@ public class MenuService implements GetMenuService, InsertMenuService {
     public void insertOptionGroup(String menuId, String name) {
         Category category = categoryRepository.findById(CategoryId.of(toCategoryIdFrom(menuId))).orElseThrow(
                 () -> new RuntimeException("Category not found"));
-        category.getMenus().forEach();
+//        category.getMenus().forEach();
     }
 
     @Override
