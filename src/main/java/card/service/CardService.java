@@ -16,10 +16,5 @@ public interface CardService {
 
 
 
-    // 결제
-    boolean authenticateCard(String cno, String cpw);
 
-    boolean canPurchase(String cno, Money money);
-
-    Purchase purchase(String cno, String cpw, Date date, String store, Money money);
 }

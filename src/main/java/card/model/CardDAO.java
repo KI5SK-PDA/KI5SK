@@ -1,5 +1,6 @@
 package card.model;
 
+import card.service.dto.PurchaseDTO;
 import card.vo.Card;
 import card.vo.Purchase;
 
@@ -20,5 +21,5 @@ public interface CardDAO {
 
     boolean canPurchase(String cno, Money money);
 
-    Purchase purchase(String cno, String cpw, Date date, String store, Money money);
+    PurchaseDTO purchase(String cno, String cpw, Date date, String store, Money money);
 }

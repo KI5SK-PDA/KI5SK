@@ -1,7 +1,7 @@
 package card.model;
 
+import card.service.dto.PurchaseDTO;
 import card.vo.Card;
-import card.vo.Company;
 import card.vo.Purchase;
 import common.vo.Money;
 
@@ -12,9 +12,15 @@ public class CardDAOImpl implements CardDAO{
     private final HashMap<String, Card> cards;
     private final HashMap<String, Purchase> purchases;
 
+    private final static CardDAOImpl cardDAO = new CardDAOImpl();
+
     public CardDAOImpl(){
         cards = new HashMap<>();
         purchases = new HashMap<>();
+    }
+
+    public static CardDAOImpl getInstance(){
+        return cardDAO;
     }
 
     @Override
@@ -77,7 +83,7 @@ public class CardDAOImpl implements CardDAO{
     }
 
     @Override
-    public Purchase purchase(String cno, String cpw, Date date, String store, Money money) {
+    public PurchaseDTO purchase(String cno, String cpw, Date date, String store, Money money) {
         // pid 생성
         int maxNum = 0;
         for (String existingPid : purchases.keySet()){
@@ -96,6 +102,6 @@ public class CardDAOImpl implements CardDAO{
         Purchase newPurchase = new Purchase(pid, cno, date, discount_money, store);
         purchases.put(pid, newPurchase);
 
-        return newPurchase;
+        return new PurchaseDTO(cno, cpw, money, date, store);
     }
 }

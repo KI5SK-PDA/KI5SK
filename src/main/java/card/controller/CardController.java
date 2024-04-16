@@ -1,5 +1,9 @@
 package card.controller;
 
+import card.service.PurchaseService;
+import card.service.PurchaseServiceImpl;
+import card.service.dto.PurchaseDTO;
+import card.service.dto.res.PurchaseResponse;
 import card.vo.Card;
 import card.vo.Company;
 import card.vo.Purchase;
@@ -13,28 +17,17 @@ import java.util.Date;
 public class CardController {
     // 1. 카드 추가 & 2. 카드 조회 & 3. 카드 충전 & 4. 카드 삭제 & 5. 카드 충전
     private final CardServiceImpl cardService;
+    private final PurchaseServiceImpl purchaseService;
 
-    public CardController(CardServiceImpl cardService) {
-        this.cardService = cardService;
+    public CardController() {
+        this.cardService = CardServiceImpl.getInstance();
+        this.purchaseService = PurchaseServiceImpl.getInstance();
         new CardTest(this);
     }
     // 카드 추가
 
-    public Purchase purchase(String cno, String cpw, String store, Money money) {
+    public PurchaseResponse purchase(PurchaseDTO purchaseDTO) {
+        return purchaseService.purchase(purchaseDTO);
 
-        // 카드 번호와 비밀번호가 맞는지 확인
-        if (cardService.authenticateCard(cno, cpw)) {
-            // 잔액 확인
-            if (cardService.canPurchase(cno, money)){
-                return null;
-            }
-            else {
-                // 결제
-                Date date = new Date();
-                return cardService.purchase(cno, cpw, date ,store, money);
-            }
-        } else {
-            return null;
-        }
     }
 }
