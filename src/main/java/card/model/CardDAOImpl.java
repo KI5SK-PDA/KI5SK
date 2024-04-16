@@ -86,16 +86,18 @@ public class CardDAOImpl implements CardDAO{
         // 카드 회사 할인율 찾아 가격 할인
         Card card = cards.get(cno);
         double discount = card.getCompany().getDiscount();
-        Money discount_money = money.applyRate(discount);
+        Money discount_money = money.subtract(money.applyRate(discount));
 
         // 구매내역 객체 생성 후 purchases에 저장
         Purchase newPurchase = new Purchase(pid, cno, date, discount_money, store);
         purchases.put(pid, newPurchase);
 
+        //
+        int totalMoney = card.getMoney().toInt() - discount_money.toInt();
         // 카드 잔고 업데이트
-        card.setMoney(discount_money);
+        card.setMoney(Money.of(totalMoney));
 
-        return new PurchaseDTO(cno, cpw, money, date, store);
+        return new PurchaseDTO(cno, cpw, discount_money, date, store);
     }
 
 //    @Override
