@@ -38,11 +38,13 @@ public class OrderServiceImpl implements OrderService {
                     .orElseThrow(() -> new RuntimeException("Can't find Category"));
 
             for(Menu menu: category.getMenus()) {
-                if(menu.getId().toString().equals(selectedMenuInfo.getMenuId())) {
+                if(menu.getId().equals(MenuId.of(selectedMenuInfo.getMenuId()))) {
                     totalPrice = totalPrice.add(menu.getDiscountPrice());
                     totalPrice = totalPrice.add(getSelectedOptionTotalPrice(menu, selectedMenuInfo.getSelectedOptionIds()));
                 }
             }
+
+            System.out.println(totalPrice);
         }
 
         // 2. 결제 요청 준비

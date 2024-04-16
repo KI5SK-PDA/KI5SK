@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PurchaseDialog extends JDialog implements SelectedMenuObserver {
 
-    JPanel purchasePanel = new PurchasePanel();
+    JPanel purchasePanel;
     private final ShoppingBasketService shoppingBasketService;
     private final List<SelectedMenuResponse> selectedMenuResponses;
 
@@ -18,6 +18,7 @@ public class PurchaseDialog extends JDialog implements SelectedMenuObserver {
         super(frame, title);
         this.shoppingBasketService = shoppingBasketService;
         this.selectedMenuResponses = shoppingBasketService.getAllSelectedMenus();
+        purchasePanel = new PurchasePanel(shoppingBasketService);
 
         setLayout(new GridLayout(0,2,10,10));
         setSize(1000, 600);

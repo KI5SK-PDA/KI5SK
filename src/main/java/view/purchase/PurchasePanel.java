@@ -2,6 +2,12 @@ package view.purchase;
 
 import card.controller.CardController;
 import card.vo.Card;
+import kiosk.controller.KioskController;
+import kiosk.service.order.OrderService;
+import kiosk.service.order.dto.req.OrderRequest;
+import kiosk.service.order.dto.res.OrderResponse;
+import shoppingbasket.service.ShoppingBasketService;
+import shoppingbasket.service.dto.res.SelectedMenuResponse;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PurchasePanel extends JPanel implements ActionListener {
 
@@ -19,9 +26,13 @@ public class PurchasePanel extends JPanel implements ActionListener {
     List<Card> cards;
     JPanel cardPanelLayout = new JPanel();
     List<JButton> cardPanels;
+    private final OrderService orderService;
+    private final ShoppingBasketService shoppingBasketService;
 
-    public PurchasePanel(){
+    public PurchasePanel(ShoppingBasketService shoppingBasketService){
         cardController = new CardController();
+        this.shoppingBasketService = shoppingBasketService;
+        this.orderService = KioskController.newInstance();
         setLayout(new BorderLayout());
 
         laTitle.setFont(new Font("Arial", Font.BOLD, 32));
@@ -67,6 +78,32 @@ public class PurchasePanel extends JPanel implements ActionListener {
                 String cardNumber = cards.get(i).getCno();
                 String cardPassword = new String(pfPassword.getPassword());
                 // TODO 결제 진행코드
+
+                System.out.println(shoppingBasketService.getAllSelectedMenus().get(0).getName());
+                List<OrderRequest.SelectedMenuInfo> menuInfos = new ArrayList<>();
+
+                for(SelectedMenuResponse menuResponse:shoppingBasketService.getAllSelectedMenus()) {
+                    menuInfos.add(OrderRequest.SelectedMenuInfo.builder()
+                            .menuId(menuResponse.getMenuId())
+                            .quantity(menuResponse.getQuantity())
+                            .selectedOptionIds(menuResponse.getSelectedOptions()
+                                .stream()
+                                .map(option -> option.getOptionId())
+                                .collect(Collectors.toList()))
+                        .build());
+                }
+
+                OrderResponse response = orderService.orderMenus(OrderRequest.builder()
+                        .cardNumber(cardNumber)
+                        .cardPassword(cardPassword)
+                        .menus(menuInfos)
+                    .build());
+
+                System.out.println(response.isSuccess());
+                System.out.println(response.getMessage());
+                System.out.println(response.getAmountOfPurchase());
+                System.out.println(response.getAmountOfOrder());
+
                 pfPassword.setText("");
             }
         }

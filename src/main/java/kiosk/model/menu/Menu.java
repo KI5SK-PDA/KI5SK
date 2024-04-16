@@ -42,8 +42,7 @@ public class Menu {
         if(discounter.isPresent()) {
             return discounter.get().getDiscountPrice(this.originalPrice);
         }
-        return null;
-
+        return Money.of(0);
     }
 
     public String getDiscountInfo(){
