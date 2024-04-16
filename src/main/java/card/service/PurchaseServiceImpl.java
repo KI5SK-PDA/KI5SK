@@ -20,7 +20,7 @@ public class PurchaseServiceImpl implements PurchaseService{
     }
 
     @Override
-    public PurchaseResponse purchase(PurchaseDTO purchaseDTO) {
+    public static PurchaseResponse purchase(PurchaseDTO purchaseDTO) {
         String cno = purchaseDTO.getCno();
         String cpw = purchaseDTO.getCpw();
         Money money = purchaseDTO.getMoney();
