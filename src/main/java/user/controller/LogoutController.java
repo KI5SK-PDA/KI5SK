@@ -1,15 +1,15 @@
-package user.controller;
+    package user.controller;
 
-import user.model.UserSession;
+    import user.model.UserSession;
 
-public class LogoutController {
+    public class LogoutController {
 
-    public boolean logout() {
-        if (UserSession.getUser() != null) {
-            UserSession.setUser(null);
-            return true;
-        } else {
+        public boolean logout() {
+            if (UserSession.getUser() != null) {
+                UserSession.setUser(null);
+                return true;
+            }
+
             return false;
         }
     }
-}

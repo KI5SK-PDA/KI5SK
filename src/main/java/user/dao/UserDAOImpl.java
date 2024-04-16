@@ -4,7 +4,16 @@ import user.model.User;
 import java.util.HashMap;
 
 public class UserDAOImpl implements UserDAO {
+    private static UserDAOImpl instance; //singleton
     private HashMap<String, User> userMap = new HashMap<>();
+
+    private UserDAOImpl() {}
+    public static UserDAOImpl getInstance() {
+        if (instance == null) {
+            instance = new UserDAOImpl();
+        }
+        return instance;
+    }
 
     @Override
     public void signUp(String uid, String upw, String uname) {

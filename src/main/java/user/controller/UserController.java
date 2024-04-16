@@ -16,7 +16,7 @@ public class UserController {
     private MainView mainView;
 
     public UserController() {
-        this.userDAO = new UserDAOImpl();
+        this.userDAO = UserDAOImpl.getInstance();
         this.userInputHandler = new UserInputHandler();
         this.userView = new UserView(userInputHandler);
         this.signUpController = new SignUpController(userDAO);

@@ -5,6 +5,7 @@ import user.controller.LogoutController;
 import user.controller.SignUpController;
 
 public class MainView {
+
     private UserView userView;
     private UserInputHandler userInputHandler;
     private SignUpController signUpController;
