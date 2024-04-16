@@ -132,7 +132,7 @@ public class MenuFrame extends JFrame {
 
             taps.add(tapButton);
             categoryTaps.add(tap);
-            JPanel menuPanel = new MenuGridPanel(categoryInfo.getMenus());
+            JPanel menuPanel = new MenuGridPanel(categoryInfo.getMenus(), shoppingBasketPanel);
             menuPanel.setVisible(false);
             menuPanels.add(menuPanel);
         }
