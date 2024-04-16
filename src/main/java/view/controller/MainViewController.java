@@ -1,7 +1,6 @@
 package view.controller;
 
 import card.controller.CardController;
-import card.service.CardServiceImpl;
 import user.controller.LoginController;
 import user.controller.LogoutController;
 import user.controller.SignUpController;
@@ -76,7 +75,7 @@ public class MainViewController {
         @Override
         public void switchScreen() {
             selectFrame.dispose();
-            storeFrame = new StoreFrame(new StoreGridPanel(new StoreToMenuTransition()));
+            storeFrame = new StoreFrame(new StoreGridPanel(new StoreToMenuTransition()), new StoreToSelectFrameTransition());
             storeFrame.setVisible(true);
         }
     }
@@ -110,6 +109,19 @@ public class MainViewController {
                     new UserFrameToSelectFrameTransition()
             );
             userFrame.setVisible(true);
+        }
+    }
+
+    private class StoreToSelectFrameTransition implements BasicTransition {
+        @Override
+        public void switchScreen() {
+            storeFrame.dispose();
+            selectFrame = new SelectFrame(
+                new SelectFrameToStoreTransition(),
+                new SelectFrameToCardTransition(),
+                new SelectFrameToUserFrameTransition()
+            );
+            selectFrame.setVisible(true);
         }
     }
 }
