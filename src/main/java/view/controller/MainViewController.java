@@ -1,6 +1,7 @@
 package view.controller;
 
 import card.controller.CardController;
+import shoppingbasket.controller.ShoppingBasketController;
 import user.controller.LoginController;
 import user.controller.LogoutController;
 import user.controller.SignUpController;
@@ -93,7 +94,7 @@ public class MainViewController {
         @Override
         public void switchMenu(String storeId) {
             storeFrame.dispose();
-            menuFrame = new MenuFrame(storeId, new MenuToStoreFrameTransition());
+            menuFrame = new MenuFrame(storeId, new MenuToStoreFrameTransition(), new ShoppingBasketController());
         }
     }
 

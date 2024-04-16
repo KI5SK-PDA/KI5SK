@@ -1,110 +1,136 @@
 package view.menu;
 
-import kiosk.service.menu.dto.res.MenuInfo;
+import shoppingbasket.controller.SelectedMenuObserver;
+import shoppingbasket.service.ShoppingBasketService;
+import shoppingbasket.service.dto.res.SelectedMenuResponse;
+import shoppingbasket.service.dto.res.SelectedOptionResponse;
+import view.purchase.PurchaseDialog;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ShoppingBasketPanel extends JPanel {
-
-    private List<MenuInfo> menus;
+public class ShoppingBasketPanel extends JPanel implements ActionListener, SelectedMenuObserver {
 
     JPanel mainPanel = new JPanel(); // 스크롤 가능한 메인 패널
-    JPanel basketItemListPanel = new JPanel(); // 상품 목록 패널
+    JPanel basketItems = new JPanel(); // 상품 목록 패널
+    JLabel totalAmountLabel = new JLabel("총 결제금액: 0원"); //실제 결제금액 계산하도록
+    JButton purchaseButton = new JButton("결제");
+    PurchaseDialog purchaseDialog;
 
-    public ShoppingBasketPanel() {
+    private final ShoppingBasketService shoppingBasketService;
 
-        menus = new ArrayList<>();
+    private JFrame parentFrame;
+
+    public ShoppingBasketPanel(ShoppingBasketService shoppingBasketService, JFrame parentFrame) {
+        this.shoppingBasketService = shoppingBasketService;
+        this.parentFrame = parentFrame;
 
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        basketItemListPanel.setLayout(new BoxLayout(basketItemListPanel, BoxLayout.Y_AXIS));
+        basketItems.setLayout(new BoxLayout(basketItems, BoxLayout.Y_AXIS));
 
         this.setLayout(new BorderLayout()); // 패널의 레이아웃 설정
 
-        JScrollPane scrollPane = new JScrollPane(basketItemListPanel);
+        JScrollPane scrollPane = new JScrollPane(basketItems);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         mainPanel.add(scrollPane);
-
-        JLabel totalAmountLabel = new JLabel("총 결제금액: 0원"); //실제 결제금액 계산하도록
         totalAmountLabel.setFont(new Font("Arial", Font.BOLD, 20));
         mainPanel.add(totalAmountLabel);
 
         JPanel purchasePanel = new JPanel();
-        JButton purchaseButton = new JButton("결제");
         purchaseButton.setFont(new Font("Arial", Font.BOLD, 30));
         purchaseButton.setPreferredSize(new Dimension(300, 40));
         purchasePanel.add(purchaseButton);
         mainPanel.add(purchasePanel);
 
+        purchaseButton.addActionListener(this);
+
         this.add(mainPanel, BorderLayout.CENTER); //결제 onClick 이벤트 달기
     }
 
-    public void addSelectedMenus(MenuInfo menu){
-        menus.add(menu);
-        viewSelectedMenus(menu);
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(purchaseButton.equals(e.getSource())){
+            // 결제 창 구현
+            purchaseDialog = new PurchaseDialog(parentFrame, "결제");
+            purchaseDialog.setVisible(true);
+        }
+    }
+
+    @Override
+    public void update() {
+        basketItems.removeAll();
+        int totalPrice = 0;
+        for(SelectedMenuResponse menu: shoppingBasketService.getAllSelectedMenus()) {
+            basketItems.add(new SelectedMenuItemPanel(menu));
+            int price = 0;
+
+            if (menu.getDiscountPrice().isEmpty()) {
+                price += menu.getOriginalPrice();
+            } else {
+                price += menu.getDiscountPrice().get();
+            }
+
+           for (SelectedOptionResponse option: menu.getSelectedOptions()) {
+               price += option.getPrice();
+           }
+
+           totalPrice += price * menu.getQuantity();
+        }
+
+        totalAmountLabel.setText("총 결제금액: "+totalPrice+"원");
         updateUI();
     }
 
-    public void viewSelectedMenus(MenuInfo menu){
-        JPanel itemPanel = new JPanel();
-        itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.Y_AXIS));
+    private class SelectedMenuItemPanel extends JPanel {
+        private SelectedMenuResponse menu;
 
-        JPanel firstLinePanel = new JPanel();
-        firstLinePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        SelectedMenuItemPanel(SelectedMenuResponse menu) {
+            this.menu = menu;
+            Box row = Box.createHorizontalBox();
 
-        JLabel nameLabel = new JLabel(menu.getName());
-        nameLabel.setFont(new Font("Serif", Font.BOLD, 20)); //실제로 추가된 메뉴만 구현하도록.
-
-        JLabel priceLabel = new JLabel("가격: "+menu.getOriginalPrice()+"원");
-        JLabel discountPriceLabel = new JLabel("할인 가격: "+menu.getDiscountPrice()+"원"); //가격을 계산하도록.
-
-        SpinnerModel quantityModel = new SpinnerNumberModel(1, 1, 100, 1);
-        JSpinner quantitySpinner = new JSpinner(quantityModel);
-
-        JButton cancelButton = new JButton("삭제");
-        cancelButton.addActionListener(e -> {
-            basketItemListPanel.remove(itemPanel);
-            basketItemListPanel.revalidate();
-            basketItemListPanel.repaint();
-        });
-
-        firstLinePanel.add(nameLabel);
-        firstLinePanel.add(priceLabel);
-        firstLinePanel.add(discountPriceLabel);
-        firstLinePanel.add(quantitySpinner);
-        firstLinePanel.add(cancelButton);
-
-        JPanel optionsPanel = new JPanel();
-        optionsPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        String selectedOption = "추가 치즈"; //옵션을 실제 선택된 옵션만 보이도록
-
-        JPanel optionPanel = new JPanel();
-        optionPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
-
-        JLabel optionLabel = new JLabel(selectedOption);
-        JButton removeButton = new JButton("빼기");
-        removeButton.setContentAreaFilled(false);
-        removeButton.setBorderPainted(false);
-        removeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                optionsPanel.removeAll();
-                optionsPanel.revalidate();
-                optionsPanel.repaint();
+            // 메뉴 이름
+            String menuInfo = menu.getName();
+            if (menu.getDiscountPrice().isEmpty()) {
+                menuInfo += String.format("    %d 원", menu.getOriginalPrice());
+            } else {
+                menuInfo += String.format("    %d 원 (할인가)", menu.getDiscountPrice().get());
             }
-        });
 
-        optionPanel.add(optionLabel);
-        optionPanel.add(removeButton);
-        optionsPanel.add(optionPanel);
+            JLabel infoLabel = new JLabel(menuInfo);
+            JButton deleteButton = new JButton("삭제");
+            deleteButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    shoppingBasketService.removeSelectedMenu(menu.getMenuId());
+                }
+            });
 
-        itemPanel.add(firstLinePanel);
-        itemPanel.add(optionsPanel);
+            JSpinner quantitySpinner = new JSpinner(new SpinnerNumberModel(menu.getQuantity(), 1, 100, 1));
+            quantitySpinner.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    try {
+                        int value = (Integer) quantitySpinner.getValue();
+                        if (value < menu.getQuantity()) {
+                            shoppingBasketService.decrementQuantityById(menu.getMenuId());
+                        } else if (value > menu.getQuantity()) {
+                            shoppingBasketService.incrementQuantityById(menu.getMenuId());
+                        }
+                    } catch (Exception exception) {
+                        System.out.println("오류 발생");
+                    }
+                }
+            });
 
-        basketItemListPanel.add(itemPanel);
+            row.add(infoLabel);
+            row.add(quantitySpinner);
+            row.add(deleteButton);
+            add(row);
+        }
     }
 }
