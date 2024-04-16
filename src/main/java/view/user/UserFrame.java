@@ -1,27 +1,43 @@
-package user.view;
+package view.user;
 
 import user.controller.LoginController;
 import user.controller.LogoutController;
 import user.controller.SignUpController;
 import user.dao.UserDAO;
 import user.dao.UserDAOImpl;
+import view.controller.BasicTransition;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MainFrame extends JFrame {
+public class UserFrame extends JFrame{
     private CardLayout cardLayout;
     private JPanel cardPanel;
-    private UserFrame userFrame;
+    private PopUpFrame userFrame;
     private SignUpController signUpController;
     private LoginController loginController;
     private LogoutController logoutController;
+    private BasicTransition toSelect;
 
-    public MainFrame(UserFrame userFrame, SignUpController signUpController, LoginController loginController, LogoutController logoutController) {
+    JButton signUpButton = new JButton("Sign Up");
+    JButton loginButton = new JButton("Login");
+    JButton logoutButton = new JButton("Logout");
+    JButton exitButton = new JButton("Exit");
+
+    public UserFrame(
+            PopUpFrame userFrame,
+            SignUpController signUpController,
+            LoginController loginController,
+            LogoutController logoutController,
+            BasicTransition toSelect
+    ) {
         this.userFrame = userFrame;
         this.signUpController = signUpController;
         this.loginController = loginController;
         this.logoutController = logoutController;
+        this.toSelect = toSelect;
         initializeUI();
     }
 
@@ -47,11 +63,6 @@ public class MainFrame extends JFrame {
 
         gbc.insets = new Insets(15, 100, 15, 100);
 
-        JButton signUpButton = new JButton("Sign Up");
-        JButton loginButton = new JButton("Login");
-        JButton logoutButton = new JButton("Logout");
-        JButton exitButton = new JButton("Exit");
-
         Font buttonFont = new Font("Arial", Font.BOLD, 28);
         signUpButton.setFont(buttonFont);
         loginButton.setFont(buttonFont);
@@ -65,7 +76,7 @@ public class MainFrame extends JFrame {
         exitButton.setPreferredSize(buttonSize);
 
         signUpButton.addActionListener(e -> userFrame.performSignUpGUI(signUpController, this));
-        loginButton.addActionListener(e -> userFrame.performLoginGUI(loginController, this));
+        loginButton.addActionListener(e -> userFrame.performLoginGUI(loginController, this, toSelect));
         logoutButton.addActionListener(e -> userFrame.performLogout(logoutController, this));
         exitButton.addActionListener(e -> System.exit(0));
 
@@ -80,17 +91,8 @@ public class MainFrame extends JFrame {
 
         cardLayout.show(cardPanel, "Main Menu");
 
-        setVisible(true);
+
+//        setVisible(true);
     }
 
-
-    public static void main(String[] args) {
-        UserDAO userDAO = new UserDAOImpl();
-        SignUpController signUpController = new SignUpController(userDAO);
-        LoginController loginController = new LoginController(userDAO);
-        LogoutController logoutController = new LogoutController();
-
-        UserFrame userFrame = new UserFrame();
-        new MainFrame(userFrame, signUpController, loginController, logoutController);
-    }
 }

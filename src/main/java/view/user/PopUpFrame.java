@@ -1,16 +1,17 @@
-package user.view;
+package view.user;
 
 import user.controller.LoginController;
 import user.controller.LogoutController;
 import user.controller.SignUpController;
 import user.model.User;
 import user.model.UserSession;
+import view.controller.BasicTransition;
 
 import javax.swing.*;
 
-public class UserFrame {
+public class PopUpFrame {
 
-    public UserFrame() {
+    public PopUpFrame() {
     }
 
     public void performLogout(LogoutController logoutController, JFrame parentFrame) {
@@ -54,7 +55,7 @@ public class UserFrame {
         }
     }
 
-    public void performLoginGUI(LoginController loginController, JFrame parentFrame) {
+    public void performLoginGUI(LoginController loginController, JFrame parentFrame, BasicTransition toSelect) {
         if (UserSession.isLoggedIn()) {
             JOptionPane.showMessageDialog(parentFrame, "Already logged in", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -81,6 +82,7 @@ public class UserFrame {
             if (user != null) {
                 UserSession.setUser(user);
                 JOptionPane.showMessageDialog(parentFrame, "Hello! " + user.getUname(), "Success", JOptionPane.INFORMATION_MESSAGE);
+                toSelect.switchScreen();
             } else {
                 JOptionPane.showMessageDialog(parentFrame, "Login failure", "Error", JOptionPane.ERROR_MESSAGE);
             }
