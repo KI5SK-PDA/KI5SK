@@ -1,10 +1,10 @@
 package view.menu;
 
-import kiosk.service.menu.dto.res.MenuInfo;
 import shoppingbasket.controller.SelectedMenuObserver;
 import shoppingbasket.service.ShoppingBasketService;
 import shoppingbasket.service.dto.res.SelectedMenuResponse;
 import shoppingbasket.service.dto.res.SelectedOptionResponse;
+import view.purchase.PurchaseDialog;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -12,11 +12,6 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-public class ShoppingBasketPanel extends JPanel implements ActionListener {
 
 public class ShoppingBasketPanel extends JPanel implements ActionListener, SelectedMenuObserver {
 
@@ -28,7 +23,6 @@ public class ShoppingBasketPanel extends JPanel implements ActionListener, Selec
 
     private final ShoppingBasketService shoppingBasketService;
 
-//    private List<SelectedMenu> selectedMenus;
     private JFrame parentFrame;
 
     public ShoppingBasketPanel(ShoppingBasketService shoppingBasketService, JFrame parentFrame) {
@@ -57,15 +51,6 @@ public class ShoppingBasketPanel extends JPanel implements ActionListener, Selec
         this.add(mainPanel, BorderLayout.CENTER); //결제 onClick 이벤트 달기
     }
 
-    public void viewSelectedMenus(MenuInfo menu){
-        JPanel itemPanel = new JPanel();
-        itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.Y_AXIS));
-
-        JPanel firstLinePanel = new JPanel();
-        firstLinePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-        basketItems.add(itemPanel);
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

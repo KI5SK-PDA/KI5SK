@@ -54,7 +54,7 @@ public class MenuFrame extends JFrame {
         headerBox.add(backButton);
         sideBox.add(headerBox);
 
-        ShoppingBasketPanel shoppingBasketPanel = new ShoppingBasketPanel(shoppingBasketController);
+        ShoppingBasketPanel shoppingBasketPanel = new ShoppingBasketPanel(shoppingBasketController, this);
         shoppingBasketController.registerObserver(shoppingBasketPanel);
         shoppingBasketPanel.setMaximumSize(new Dimension(480, 1080)); // 가로 480px, 세로는 제한 없음
         sideBox.add(shoppingBasketPanel);
