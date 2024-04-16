@@ -3,9 +3,11 @@ package user.dao;
 import user.model.User;
 import java.util.HashMap;
 
-public class    UserDAOImpl implements UserDAO {
+public class UserDAOImpl implements UserDAO {
     private static UserDAOImpl instance;
-    private HashMap<String, User> userMap = new HashMap<>();
+    private HashMap<String, User> userMap = new HashMap<>(){{
+        put("abcd", new User("abcd", "1234","ki5sk")); // test 용
+    }};
 
     public UserDAOImpl() {}
     public static UserDAOImpl getInstance() {

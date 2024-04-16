@@ -29,10 +29,6 @@ public class CardController {
         new CardTest(this);
     }
 
-    public void runView(){
-        new CardFrame(this);
-    }
-
     // 카드 추가
     public Card insertCard(String companyName, String pw){
         return cardService.insertCard(UserSession.getUser().getUid(), pw, companyName);
