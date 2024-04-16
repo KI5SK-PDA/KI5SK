@@ -3,7 +3,9 @@ package shoppingbasket.service;
 import common.vo.Money;
 import shoppingbasket.model.SelectedMenu;
 import shoppingbasket.model.SelectedMenuRepository;
+import shoppingbasket.model.SelectedOption;
 import shoppingbasket.service.dto.req.AddSelectedMenuRequest;
+import shoppingbasket.service.dto.req.AddSelectedOptionRequest;
 import shoppingbasket.service.dto.res.SelectedMenuResponse;
 import shoppingbasket.service.dto.res.SelectedOptionResponse;
 
@@ -27,8 +29,14 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
     }
 
     @Override
-    public void addOptions(AddSelectedMenuRequest request) {
+    public void addOptions(AddSelectedOptionRequest request) {
+        SelectedMenu selectedMenu = selectedMenuRepository.findById(request.getMenuId()).orElseThrow(() -> new RuntimeException("Menu not found"));
 
+        selectedMenu.getSelectedOptions().add(SelectedOption.builder()
+                .name(request.getName())
+                .optionId(request.getOptionId())
+                .price(request.getPrice())
+            .build());
     }
 
     @Override
@@ -72,5 +80,11 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
     public void decrementQuantityById(String menuId) {
         SelectedMenu menu = selectedMenuRepository.findById(menuId).orElseThrow(() -> new RuntimeException("Menu not found"));
         menu.minusQuantity();
+    }
+
+    @Override
+    public void removeSelectedOption(String menuId, String optionId) {
+        SelectedMenu menu = selectedMenuRepository.findById(menuId).orElseThrow(() -> new RuntimeException("Menu not found"));
+        menu.removeOption(optionId);
     }
 }

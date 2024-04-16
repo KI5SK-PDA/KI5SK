@@ -91,6 +91,8 @@ public class ShoppingBasketPanel extends JPanel implements ActionListener, Selec
 
         SelectedMenuItemPanel(SelectedMenuResponse menu) {
             this.menu = menu;
+            Box col = Box.createVerticalBox();
+
             Box row = Box.createHorizontalBox();
 
             // 메뉴 이름
@@ -130,7 +132,26 @@ public class ShoppingBasketPanel extends JPanel implements ActionListener, Selec
             row.add(infoLabel);
             row.add(quantitySpinner);
             row.add(deleteButton);
-            add(row);
+
+
+            col.add(row);
+            for(SelectedOptionResponse option: menu.getSelectedOptions()) {
+                Box options = Box.createHorizontalBox();
+
+                JLabel optionLabel = new JLabel(String.format("%s: +%d원", option.getName(), option.getPrice()));
+                JButton deleteOptionButton = new JButton("삭제");
+                deleteOptionButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        shoppingBasketService.removeSelectedOption(menu.getMenuId(), option.getOptionId());
+                    }
+                });
+
+                options.add(optionLabel);
+                options.add(deleteOptionButton);
+                col.add(options);
+            }
+            add(col);
         }
     }
 }
