@@ -8,7 +8,7 @@ public class TimePercentageDiscounter extends PercentageDiscounter {
     private final LocalTime startTime;
     private final LocalTime endTime;
 
-    TimePercentageDiscounter (double discountRate, LocalTime startTime, LocalTime endTime) {
+    public TimePercentageDiscounter (double discountRate, LocalTime startTime, LocalTime endTime) {
         super(discountRate);
         this.startTime = startTime;
         this.endTime = endTime;

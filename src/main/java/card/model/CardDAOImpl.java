@@ -98,25 +98,14 @@ public class CardDAOImpl implements CardDAO{
         return new PurchaseDTO(cno, cpw, money, date, store);
     }
 
-    @Override
-    public List<Purchase> findPurchasesByCno(String cno){
-        List<Purchase> cnoPurchases = new ArrayList<>();
-        for(Map.Entry<String, Purchase> entry : purchases.entrySet()){
-            if(cno.equals(entry.getValue().getCno())){
-                cnoPurchases.add(entry.getValue());
-            }
-        }
-        return cnoPurchases;
-    }
-
-    @Override
-    public List<Purchase> findPurchasesByCno(String cno){
-        List<Purchase> cnoPurchases = new ArrayList<>();
-        for(Map.Entry<String, Purchase> entry : puchases.entrySet()){
-            if(cno.equals(entry.getValue().getCno())){
-                cnoPurchases.add(entry.getValue());
-            }
-        }
-        return cnoPurchases;
-    }
+//    @Override
+//    public List<Purchase> findPurchasesByCno(String cno){
+//        List<Purchase> cnoPurchases = new ArrayList<>();
+//        for(Map.Entry<String, Purchase> entry : purchases.entrySet()){
+//            if(cno.equals(entry.getValue().getCno())){
+//                cnoPurchases.add(entry.getValue());
+//            }
+//        }
+//        return cnoPurchases;
+//    }
 }

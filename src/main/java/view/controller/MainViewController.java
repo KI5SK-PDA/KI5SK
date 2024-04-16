@@ -42,7 +42,7 @@ public class MainViewController {
         @Override
         public void switchScreen() {
             selectFrame.dispose();
-            cardFrame = new CardFrame(new CardController(new CardServiceImpl()));
+            cardFrame = new CardFrame(new CardController());
             cardFrame.setVisible(true);
         }
     }

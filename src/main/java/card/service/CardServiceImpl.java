@@ -69,19 +69,12 @@ public class CardServiceImpl implements CardService{
     }
 
 
-    public List<Purchase> findPurchasesByCno(String cno){
-        if(cno != null){
-            return cardDAO.findPurchasesByCno(cno);
-        }
-        return null;
-    }
-
-    public List<Purchase> findPurchasesByCno(String cno){
-        if(cno != null){
-            return cardDAO.findPurchasesByCno(cno);
-        }
-        return null;
-    }
+//    public List<Purchase> findPurchasesByCno(String cno){
+//        if(cno != null){
+//            return cardDAO.findPurchasesByCno(cno);
+//        }
+//        return null;
+//    }
 
     public String newCardNo(){
         UUID uuid = UUID.randomUUID();

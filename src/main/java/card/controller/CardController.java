@@ -51,7 +51,7 @@ public class CardController {
     }
 
     // 카드 충전
-    public Card chargeCard(String cno, int amount){
+    public Card chargeCard(String cno, String amount){
         return cardService.chargeCard(cno, amount);
     }
     // 카드 삭제
@@ -59,12 +59,8 @@ public class CardController {
         return cardService.deleteCard(cno);
     }
     // 구매내역 조회
-    public List<Purchase> findPurchasesByCno(String cno){
-        return cardService.findPurchasesByCno(cno);
-    }
-
-    public List<Purchase> findPurchasesByCno(String cno){
-        return cardService.findPurchasesByCno(cno);
-    }
+//    public List<Purchase> findPurchasesByCno(String cno){
+//        return cardService.findPurchasesByCno(cno);
+//    }
 
 }
