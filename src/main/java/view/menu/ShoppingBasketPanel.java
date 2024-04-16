@@ -1,8 +1,5 @@
 package view.menu;
 
-import kiosk.service.menu.dto.res.MenuInfo;
-import view.purchase.PurchaseDialog;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -169,13 +166,18 @@ public class ShoppingBasketPanel extends JPanel implements ActionListener {
         }
     }
 
-//    @Builder
-//    @AllArgsConstructor
-//    private class SelectedMenu {
-//        String id;
-//        int originalPrice;
-//        Optional<Integer> discountPrice;
-//        int quantity;
-//        String name;
-//    }
+        JLabel totalAmountLabel = new JLabel("총 결제금액: 0원");
+        // 총 결제금액을 계산하는 로직은 구현부탁드려요
+        totalAmountLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        mainBox.add(totalAmountLabel);
+
+        JPanel purchasePanel = new JPanel();
+        JButton purchaseButton = new JButton("결제");
+        purchaseButton.setFont(new Font("Arial", Font.BOLD, 30));
+        purchaseButton.setPreferredSize(new Dimension(300, 40));
+        purchasePanel.add(purchaseButton);
+        mainBox.add(purchasePanel);
+
+        add(mainBox);
+    }
 }
