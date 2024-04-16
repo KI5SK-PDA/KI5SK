@@ -1,4 +1,4 @@
-package user.view;
+package view.user;
 
 public class InputValidator {
     public static boolean isValidInput(String input) {

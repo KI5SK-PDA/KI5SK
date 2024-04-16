@@ -8,6 +8,8 @@ import card.vo.Card;
 import card.vo.Company;
 import card.vo.Purchase;
 import common.vo.Money;
+import user.model.User;
+import user.model.UserSession;
 import view.card.CardFrame;
 
 
@@ -33,11 +35,11 @@ public class CardController {
 
     // 카드 추가
     public Card insertCard(String companyName, String pw){
-        return cardService.insertCard("kkh", pw, companyName);
+        return cardService.insertCard(UserSession.getUser().getUid(), pw, companyName);
     }
 
     public List<Card> findCardsByUser() {
-        return cardService.findCardsByUser("kkh");
+        return cardService.findCardsByUser(UserSession.getUser().getUid());
     }
 
     // 결제

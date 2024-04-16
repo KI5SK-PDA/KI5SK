@@ -1,12 +1,13 @@
 package user.controller;
 
 import user.dao.UserDAO;
+import user.dao.UserDAOImpl;
 
 public class SignUpController {
     private UserDAO userDAO;
 
-    public SignUpController(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public SignUpController() {
+        this.userDAO = UserDAOImpl.getInstance();
     }
 
     public boolean doesUserIdExist(String uid) {
