@@ -11,8 +11,8 @@ import common.vo.Money;
 
 import card.service.CardServiceImpl;
 import view.CardTest;
-
 import java.util.Date;
+import java.util.List;
 
 public class CardController {
     // 1. 카드 추가 & 2. 카드 조회 & 3. 카드 충전 & 4. 카드 삭제 & 5. 카드 충전
@@ -24,10 +24,36 @@ public class CardController {
         this.purchaseService = PurchaseServiceImpl.getInstance();
         new CardTest(this);
     }
-    // 카드 추가
 
+    // 카드 추가
+    public Card insertCard(String uid, String companyName, String pw){
+        return cardService.insertCard(uid, pw, companyName);
+    }
+    // 카드 조회 - uid
+    public List<Card> findCardsByUser(String uid) {
+        return cardService.findCardsByUser(uid);
+    }
+
+    // 결제
     public PurchaseResponse purchase(PurchaseDTO purchaseDTO) {
         return purchaseService.purchase(purchaseDTO);
 
     }
+    // 카드 조회 - cno
+    public Card findCardByCno(String cno){
+        return cardService.findCardByCno(cno);
+    }
+    // 카드 충전
+    public Card chargeCard(String cno, int amount){
+        return cardService.chargeCard(cno, amount);
+    }
+    // 카드 삭제
+    public Card deleteCard(String cno) {
+        return cardService.deleteCard(cno);
+    }
+    // 구매내역 조회
+    public List<Purchase> findPurchasesByCno(String cno){
+        return cardService.findPurchasesByCno(cno);
+    }
+
 }

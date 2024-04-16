@@ -25,23 +25,17 @@ public class CardDAOImpl implements CardDAO{
 
     @Override
     public Card insertCard(Card card) {
-
-        if(card != null){
-            cards.put(card.getCno(), card);
-            return card;
-        }
-        return null;
+        cards.put(card.getCno(), card);
+        return card;
     }
 
     @Override
     public Card findCardByCno(String cno) {
-        if(cno == null) return null;
         return cards.getOrDefault(cno, null);
     }
 
     @Override
     public List<Card> findCardsByUser(String uid) {
-        if(uid == null) return null;
         List<Card> userCards = new ArrayList<>();
         for(Map.Entry<String, Card> entry : cards.entrySet()){
             if(uid.equals(entry.getValue().getUid())){
@@ -52,18 +46,14 @@ public class CardDAOImpl implements CardDAO{
     }
 
     @Override
-    public Card chargeCard(String cno, int amount) {
-        if(cno != null){
-            cards.get(cno).getMoney().add(Money.of(amount));
-        }
-        return null;
+    public Card chargeCard(String cno, Money money) {
+        cards.get(cno).setMoney(cards.get(cno).getMoney().add(money));
+        return cards.get(cno);
     }
 
     @Override
-    public void deleteCard(String cno) {
-        if(cno != null){
-            cards.remove(cno);
-        }
+    public Card deleteCard(String cno) {
+        return cards.remove(cno);
     }
 
     @Override
@@ -106,5 +96,16 @@ public class CardDAOImpl implements CardDAO{
         card.setMoney(discount_money);
 
         return new PurchaseDTO(cno, cpw, money, date, store);
+    }
+
+    @Override
+    public List<Purchase> findPurchasesByCno(String cno){
+        List<Purchase> cnoPurchases = new ArrayList<>();
+        for(Map.Entry<String, Purchase> entry : puchases.entrySet()){
+            if(cno.equals(entry.getValue().getCno())){
+                cnoPurchases.add(entry.getValue());
+            }
+        }
+        return cnoPurchases;
     }
 }
