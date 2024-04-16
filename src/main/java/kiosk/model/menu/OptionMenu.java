@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.util.UUID;
 
+
 public class OptionMenu {
     @Getter
     private final String id = UUID.randomUUID().toString();
