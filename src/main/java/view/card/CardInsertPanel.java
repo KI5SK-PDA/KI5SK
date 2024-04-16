@@ -28,7 +28,7 @@ public class CardInsertPanel extends UpdatableJPanel implements ActionListener {
     CardController cardController;
 
     public CardInsertPanel(CardController cardController){
-        System.out.println(cardController);
+//        System.out.println(cardController);
         this.cardController = cardController;
 
         setLayout(null);

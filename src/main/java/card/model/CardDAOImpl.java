@@ -1,22 +1,26 @@
 package card.model;
 
+import card.service.dto.PurchaseDTO;
 import card.vo.Card;
 import card.vo.Purchase;
 import common.vo.Money;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CardDAOImpl implements CardDAO{
 
     private final HashMap<String, Card> cards;
-    private final HashMap<String, Purchase> puchases;
+    private final HashMap<String, Purchase> purchases;
+
+    private final static CardDAOImpl cardDAO = new CardDAOImpl();
 
     public CardDAOImpl(){
         cards = new HashMap<>();
-        puchases = new HashMap<>();
+        purchases = new HashMap<>();
+    }
+
+    public static CardDAOImpl getInstance(){
+        return cardDAO;
     }
 
     @Override
@@ -53,18 +57,55 @@ public class CardDAOImpl implements CardDAO{
     }
 
     @Override
-    public Purchase purchase(String cno, String cpw, String store, Money money) {
-        return null;
+    public boolean authenticateCard(String cno, String cpw) {
+        Card card = cards.get(cno);
+        if(card != null && card.getCpw().equals(cpw)){
+            return true;
+        }else return false;
     }
 
     @Override
-    public List<Purchase> findPurchasesByCno(String cno){
-        List<Purchase> cnoPurchases = new ArrayList<>();
-        for(Map.Entry<String, Purchase> entry : puchases.entrySet()){
-            if(cno.equals(entry.getValue().getCno())){
-                cnoPurchases.add(entry.getValue());
-            }
-        }
-        return cnoPurchases;
+    public boolean canPurchase(String cno, Money money) {
+        Card card = cards.get(cno);
+        if(money.toInt() <= card.getMoney().toInt())
+            return true;
+        else return false;
     }
+
+    @Override
+    public PurchaseDTO purchase(String cno, String cpw, Date date, String store, Money money) {
+        // pid 생성
+        int maxNum = 0;
+        for (String existingPid : purchases.keySet()){
+            int number = Integer.parseInt(existingPid.substring(1));
+            if(number > maxNum) maxNum = number;
+        }
+
+        String pid = String.format("P%02d", maxNum+1);
+
+        // 카드 회사 할인율 찾아 가격 할인
+        Card card = cards.get(cno);
+        double discount = card.getCompany().getDiscount();
+        Money discount_money = money.applyRate(discount);
+
+        // 구매내역 객체 생성 후 purchases에 저장
+        Purchase newPurchase = new Purchase(pid, cno, date, discount_money, store);
+        purchases.put(pid, newPurchase);
+
+        // 카드 잔고 업데이트
+        card.setMoney(discount_money);
+
+        return new PurchaseDTO(cno, cpw, money, date, store);
+    }
+
+//    @Override
+//    public List<Purchase> findPurchasesByCno(String cno){
+//        List<Purchase> cnoPurchases = new ArrayList<>();
+//        for(Map.Entry<String, Purchase> entry : purchases.entrySet()){
+//            if(cno.equals(entry.getValue().getCno())){
+//                cnoPurchases.add(entry.getValue());
+//            }
+//        }
+//        return cnoPurchases;
+//    }
 }

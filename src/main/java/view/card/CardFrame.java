@@ -1,6 +1,8 @@
 package view.card;
 
 import card.controller.CardController;
+import user.model.UserSession;
+import view.controller.BasicTransition;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,41 +11,45 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardView extends JFrame implements ActionListener {
+public class CardFrame extends JFrame implements ActionListener {
 
-    JLabel laCardTitle = new JLabel("카드 시스템입니다.");
+    JLabel laCardTitle = new JLabel(UserSession.getUser().getUname()+"님, 원하는 기능을 선택해 주세요!!");
     JButton btnInsertCard = new JButton("카드 추가");
     JButton btnViewCards = new JButton("카드 조회");
     JButton btnChargeCard = new JButton("카드 충전");
     JButton btnDeleteCard = new JButton("카드 삭제");
+    JButton btnBack = new JButton("뒤로 가기");
 
     List<UpdatableJPanel> panels = new ArrayList<>();
 
     JPanel btns = new JPanel();
     JButton[] buttons = {btnInsertCard, btnViewCards, btnChargeCard, btnDeleteCard};
+    BasicTransition toSelect;
 
-    private CardController cardController;
-
-    public CardView(CardController cardController){
+    public CardFrame(CardController cardController, BasicTransition toSelect){
+        this.toSelect = toSelect;
         panels.add(new CardInsertPanel(cardController));
         panels.add(new CardCheckPanel(cardController));
         panels.add(new CardChargePanel(cardController));
         panels.add(new CardDeletePanel(cardController));
 
-        this.cardController = cardController;
-        setTitle("KI5SK입니다.");
+        setTitle("KI5SK");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 800);
         setLayout(null);
 
-        laCardTitle.setBounds(10,0,300,60);
+        laCardTitle.setBounds(15,0,800,60);
         laCardTitle.setFont(new Font("Arial", Font.BOLD, 32));
         add(laCardTitle);
 
         viewCardNav();
         viewInitPanel();
 
-        setVisible(true);
+        btnBack.setBounds(850, 70, 140, 60);
+        btnBack.setFont(new Font("Arial", Font.BOLD, 18));
+        add(btnBack);
+        btnBack.addActionListener(this);
+
         setResizable(false);
     }
 
@@ -55,6 +61,9 @@ public class CardView extends JFrame implements ActionListener {
             } else {
                 hidePanel(panels.get(i));
             }
+        }
+        if(btnBack.equals(e.getSource())){
+            toSelect.switchScreen();
         }
     }
 
