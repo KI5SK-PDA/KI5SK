@@ -11,6 +11,7 @@ import java.util.List;
 public class OrderRequest {
     private String cardNumber;
     private String cardPassword;
+    private String store;
     private List<SelectedMenuInfo> menus;
 
 
