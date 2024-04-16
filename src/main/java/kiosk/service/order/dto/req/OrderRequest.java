@@ -18,11 +18,12 @@ public class OrderRequest {
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     @Getter
-    static class SelectedMenuInfo {
-        private String menuId;
-        private int quantity;
-        private List<String> selectedOptionIds;
+    public static class SelectedMenuInfo {
+        public String menuId;
+        public int quantity;
+        public List<String> selectedOptionIds;
     }
+
 }
 
 
