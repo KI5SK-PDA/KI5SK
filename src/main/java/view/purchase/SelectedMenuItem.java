@@ -67,6 +67,7 @@ public class SelectedMenuItem extends JButton {
         if (selectedMenu.getDiscountPrice().isEmpty()) {
             return selectedMenu.getOriginalPrice()+"원";
         }
+
         return "SALE "+selectedMenu.getDiscountPrice().get()+"원";
     }
 }
