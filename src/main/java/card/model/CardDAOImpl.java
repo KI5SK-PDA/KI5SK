@@ -32,7 +32,6 @@ public class CardDAOImpl implements CardDAO{
 
     @Override
     public List<Card> findCardsByUser(String uid) {
-        if(uid == null) return null;
         List<Card> userCards = new ArrayList<>();
         for(Map.Entry<String, Card> entry : cards.entrySet()){
             if(uid.equals(entry.getValue().getUid())){
@@ -44,11 +43,8 @@ public class CardDAOImpl implements CardDAO{
 
     @Override
     public Card chargeCard(String cno, Money money) {
-        if(cno != null){
-            cards.get(cno).setMoney(cards.get(cno).getMoney().add(money));
-            return cards.get(cno);
-        }
-        return null;
+        cards.get(cno).setMoney(cards.get(cno).getMoney().add(money));
+        return cards.get(cno);
     }
 
     @Override
@@ -59,5 +55,16 @@ public class CardDAOImpl implements CardDAO{
     @Override
     public Purchase purchase(String cno, String cpw, String store, Money money) {
         return null;
+    }
+
+    @Override
+    public List<Purchase> findPurchasesByCno(String cno){
+        List<Purchase> cnoPurchases = new ArrayList<>();
+        for(Map.Entry<String, Purchase> entry : puchases.entrySet()){
+            if(cno.equals(entry.getValue().getCno())){
+                cnoPurchases.add(entry.getValue());
+            }
+        }
+        return cnoPurchases;
     }
 }

@@ -17,6 +17,7 @@ public class StoreClickListner implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         storeToMenu.switchMenu(storeId);
+        System.out.println(storeId+"");
     }
 
     @Override

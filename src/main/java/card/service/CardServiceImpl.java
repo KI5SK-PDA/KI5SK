@@ -21,6 +21,13 @@ public class CardServiceImpl implements CardService{
 
     @Override
     public Card insertCard(String uid, String cpw, String companyName) {
+        if("".equals(companyName)){
+            System.out.println("은행 선택이 필요");
+            return null;
+        } else if("".equals(cpw)){
+            System.out.println("비밀번호 입력 필요");
+            return null;
+        }
         return cardDAO.insertCard(new Card(newCardNo(), uid, cpw, new Company(companyName)));
     }
 
@@ -37,11 +44,16 @@ public class CardServiceImpl implements CardService{
     }
 
     @Override
-    public Card chargeCard(String cno, int amount) {
-        if(cno != null){
-            return cardDAO.chargeCard(cno, Money.of(amount));
+    public Card chargeCard(String cno, String amount) {
+        try{
+            if(cno != null ){
+                return cardDAO.chargeCard(cno, Money.of(Integer.parseInt(amount)));
+            }
+            return null;
+        } catch(Error error){
+            System.out.println("카드 충전 과정 중 에러 : "+error);
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -57,6 +69,13 @@ public class CardServiceImpl implements CardService{
         return null;
     }
 
+    public List<Purchase> findPurchasesByCno(String cno){
+        if(cno != null){
+            return cardDAO.findPurchasesByCno(cno);
+        }
+        return null;
+    }
+
     public String newCardNo(){
         UUID uuid = UUID.randomUUID();
         return changeCardFormat(uuid.toString().replaceAll("\\-",""));
@@ -64,10 +83,10 @@ public class CardServiceImpl implements CardService{
 
     public String changeCardFormat(String uuid){
         StringBuilder formattedCardNo = new StringBuilder();
-        formattedCardNo.append(uuid.substring(0,4)).append("-");
-        formattedCardNo.append(uuid.substring(4,8)).append("-");
-        formattedCardNo.append(uuid.substring(8,12)).append("-");
-        formattedCardNo.append(uuid.substring(12,16));
+        formattedCardNo.append(uuid.substring(0,4)).append("-")
+                        .append(uuid.substring(4,8)).append("-")
+                        .append(uuid.substring(8,12)).append("-")
+                        .append(uuid.substring(12,16));
         return formattedCardNo.toString();
     }
 }

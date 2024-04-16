@@ -1,8 +1,8 @@
 package card.controller;
 
+import view.card.CardView;
 import card.vo.Card;
-import card.vo.Company;
-import common.vo.Money;
+import card.vo.Purchase;
 
 import card.service.CardServiceImpl;
 
@@ -16,25 +16,33 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    // 카드 추가
-    public Card insertCard(String uid, String companyName, String pw){
-        return cardService.insertCard(uid, pw, companyName);
+    public void runView(){
+        new CardView(this);
     }
 
-    public List<Card> findCardsByUser(String uid) {
-        return cardService.findCardsByUser(uid);
+    // 카드 추가
+    public Card insertCard(String companyName, String pw){
+        return cardService.insertCard("kkh", pw, companyName);
+    }
+
+    public List<Card> findCardsByUser() {
+        return cardService.findCardsByUser("kkh");
     }
 
     public Card findCardByCno(String cno){
         return cardService.findCardByCno(cno);
     }
 
-    public Card chargeCard(String cno, int amount){
+    public Card chargeCard(String cno, String amount){
         return cardService.chargeCard(cno, amount);
     }
 
     public Card deleteCard(String cno) {
         return cardService.deleteCard(cno);
+    }
+
+    public List<Purchase> findPurchasesByCno(String cno){
+        return cardService.findPurchasesByCno(cno);
     }
 
 }
