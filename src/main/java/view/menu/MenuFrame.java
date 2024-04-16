@@ -3,7 +3,6 @@ package view.menu;
 import kiosk.controller.KioskController;
 import kiosk.service.menu.GetMenuService;
 import kiosk.service.menu.dto.res.CategoryInfo;
-import kiosk.service.menu.dto.res.MenuInfo;
 import kiosk.service.store.CommonStoreService;
 import shoppingbasket.controller.ShoppingBasketController;
 import view.controller.BasicTransition;
@@ -13,9 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class MenuFrame extends JFrame {
     private final GetMenuService menuService = KioskController.newInstance();
@@ -23,6 +20,7 @@ public class MenuFrame extends JFrame {
     private List<JButton> taps = new ArrayList<>();
     private List<JPanel> menuPanels = new ArrayList<>();
     private Box menuList = Box.createVerticalBox();
+    private final GetMenuService getMenuService = KioskController.newInstance();
     private final ShoppingBasketController shoppingBasketController;
 
     public MenuFrame(String storeId, BasicTransition backToStore, ShoppingBasketController shoppingBasketController) {
@@ -60,90 +58,11 @@ public class MenuFrame extends JFrame {
         sideBox.add(shoppingBasketPanel);
 
         // 메뉴가져오기 이후라 가정
-        List<CategoryInfo> categoryNames = Arrays.asList(
-            CategoryInfo.builder()
-                .name("단품")
-                .menus(Arrays.asList(
-                    MenuInfo.builder()
-                        .name("짜장면")
-                        .id("110-01-000")
-                        .originalPrice(4000)
-                        .discountPrice(Optional.of(3000))
-                        .discountInfo(Optional.of("1000원 할인"))
-                        .build(),
-                    MenuInfo.builder()
-                        .name("짬뽕")
-                        .id("110-01-001")
-                        .originalPrice(5000)
-                        .discountPrice(Optional.of(4000))
-                        .discountInfo(Optional.of("1000원 할인"))
-                        .build(),
-                    MenuInfo.builder()
-                        .name("탕수육")
-                        .id("110-01-002")
-                        .originalPrice(14000)
-                        .discountPrice(Optional.empty())
-                        .discountInfo(Optional.empty())
-                        .build()
-                ))
-                .build(),
-            CategoryInfo.builder()
-                .name("세트")
-                .menus(Arrays.asList(
-                    MenuInfo.builder()
-                        .name("짜장면 2+ 탕수육")
-                        .id("110-01-003")
-                        .originalPrice(10000)
-                        .discountPrice(Optional.of(3000))
-                        .discountInfo(Optional.of("1000원 할인"))
-                        .build(),
-                    MenuInfo.builder()
-                        .name("짬뽕2+ 탕수육")
-                        .id("110-01-004")
-                        .originalPrice(15000)
-                        .discountPrice(Optional.of(4000))
-                        .discountInfo(Optional.of("1000원 할인"))
-                        .build(),
-                    MenuInfo.builder()
-                        .name("탕수육+양장피")
-                        .id("110-01-005")
-                        .originalPrice(24000)
-                        .discountPrice(Optional.empty())
-                        .discountInfo(Optional.empty())
-                        .build()
-                ))
-                .build(),
-            CategoryInfo.builder()
-                .name("사이드")
-                .menus(Arrays.asList(
-                    MenuInfo.builder()
-                        .name("단무지")
-                        .id("110-01-006")
-                        .originalPrice(4000)
-                        .discountPrice(Optional.of(3000))
-                        .discountInfo(Optional.of("1000원 할인"))
-                        .build(),
-                    MenuInfo.builder()
-                        .name("군만두")
-                        .id("110-01-007")
-                        .originalPrice(5000)
-                        .discountPrice(Optional.of(4000))
-                        .discountInfo(Optional.of("1000원 할인"))
-                        .build(),
-                    MenuInfo.builder()
-                        .name("콜라")
-                        .id("110-01-008")
-                        .originalPrice(14000)
-                        .discountPrice(Optional.empty())
-                        .discountInfo(Optional.empty())
-                        .build()
-                ))
-                .build()
-        );
-
+        List<CategoryInfo> categoryInfos = getMenuService.getAllMenusByStoreId(storeId);
+        System.out.println(categoryInfos.size());
         Box categoryTaps = Box.createHorizontalBox();
-        for(int i=0; i<categoryNames.size(); i++) {
-            CategoryInfo categoryInfo = categoryNames.get(i);
+        for(int i=0; i<categoryInfos.size(); i++) {
+            CategoryInfo categoryInfo = categoryInfos.get(i);
             JButton tapButton = new JButton(categoryInfo.getName());
             JPanel tap = new CategoryTapButton(tapButton, new TapChangeListener());
 
@@ -155,7 +74,10 @@ public class MenuFrame extends JFrame {
         }
 
         menuList.add(categoryTaps);
-        menuPanels.get(0).setVisible(true);
+        if (menuPanels.size() > 0) {
+            menuPanels.get(0).setVisible(true);
+        }
+
         for (JPanel menuPanel: menuPanels)
             menuList.add(menuPanel);
 

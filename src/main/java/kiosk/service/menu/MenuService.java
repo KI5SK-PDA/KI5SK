@@ -4,14 +4,18 @@ import common.vo.Money;
 import kiosk.model.discounter.AlwaysCashDiscounter;
 import kiosk.model.discounter.Discounter;
 import kiosk.model.discounter.TimePercentageDiscounter;
-import kiosk.model.menu.*;
+import kiosk.model.menu.Category;
+import kiosk.model.menu.CategoryId;
+import kiosk.model.menu.CategoryRepository;
+import kiosk.model.menu.Menu;
+import kiosk.model.menu.OptionGroupMenu;
+import kiosk.model.menu.OptionMenu;
 import kiosk.model.store.Store;
 import kiosk.model.store.StoreId;
 import kiosk.model.store.StoreRepository;
 import kiosk.service.menu.dto.req.InsertMenuRequest;
 import kiosk.service.menu.dto.res.CategoryInfo;
 import kiosk.service.menu.dto.res.MenuInfo;
-import kiosk.service.menu.dto.res.OptionMenuInfo;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -57,9 +61,12 @@ public class MenuService implements GetMenuService, InsertMenuService {
 
     @Override
     public String insertCategory(String storeId, String name) {
+        Store store = storeRepository.findById(StoreId.of(storeId)).orElseThrow(() -> new RuntimeException("Store not found"));
+
         Category category = Category.create(name);
         Category newCategory = categoryRepository.create(category, StoreId.of(storeId));
 
+        store.getCategoryIds().add(newCategory.getId());
         return newCategory.getId().toString();
     }
 
@@ -99,7 +106,7 @@ public class MenuService implements GetMenuService, InsertMenuService {
 
 
         Money originalPrice = Money.of(insertMenuRequest.getOriginalPrice());
-        Discounter discounter = AlwaysCashDiscounter.create(Money.of(10000));// 일단 고정
+        Discounter discounter = AlwaysCashDiscounter.create(Money.of(1000));// 일단 고정
         Menu menu = Menu.create(insertMenuRequest.getName(), originalPrice, Optional.of(discounter), CategoryId.of(categoryId));
 
         category.updateMenus(menu);

@@ -3,6 +3,7 @@ package shoppingbasket.controller;
 import shoppingbasket.service.ShoppingBasketService;
 import shoppingbasket.service.ShoppingBasketServiceImpl;
 import shoppingbasket.service.dto.req.AddSelectedMenuRequest;
+import shoppingbasket.service.dto.req.AddSelectedOptionRequest;
 import shoppingbasket.service.dto.res.SelectedMenuResponse;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class ShoppingBasketController implements ShoppingBasketService, Selected
     }
 
     @Override
-    public void addOptions(AddSelectedMenuRequest request) {
+    public void addOptions(AddSelectedOptionRequest request) {
         shoppingBasketService.addOptions(request);
         notifyObserver();
     }
@@ -54,6 +55,12 @@ public class ShoppingBasketController implements ShoppingBasketService, Selected
     @Override
     public void decrementQuantityById(String menuId) {
         shoppingBasketService.decrementQuantityById(menuId);
+        notifyObserver();
+    }
+
+    @Override
+    public void removeSelectedOption(String menuId, String optionId) {
+        shoppingBasketService.removeSelectedOption(menuId, optionId);
         notifyObserver();
     }
 
