@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardView extends JFrame implements ActionListener {
+public class CardFrame extends JFrame implements ActionListener {
 
     JLabel laCardTitle = new JLabel("카드 시스템입니다.");
     JButton btnInsertCard = new JButton("카드 추가");
@@ -22,9 +22,9 @@ public class CardView extends JFrame implements ActionListener {
     JPanel btns = new JPanel();
     JButton[] buttons = {btnInsertCard, btnViewCards, btnChargeCard, btnDeleteCard};
 
-    private CardController cardController;
+    private final CardController cardController;
 
-    public CardView(CardController cardController){
+    public CardFrame(CardController cardController){
         panels.add(new CardInsertPanel(cardController));
         panels.add(new CardCheckPanel(cardController));
         panels.add(new CardChargePanel(cardController));
@@ -43,7 +43,7 @@ public class CardView extends JFrame implements ActionListener {
         viewCardNav();
         viewInitPanel();
 
-        setVisible(true);
+//        setVisible(true);
         setResizable(false);
     }
 
