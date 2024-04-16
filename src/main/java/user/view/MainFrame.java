@@ -22,33 +22,51 @@ public class MainFrame extends JFrame {
         this.signUpController = signUpController;
         this.loginController = loginController;
         this.logoutController = logoutController;
-
         initializeUI();
     }
 
     private void initializeUI() {
-        setTitle("User Management System");
+        setTitle("KI5SK SERVICE");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
-        JPanel mainMenuPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 50));
+        JPanel mainMenuPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(10, 100, 10, 100);
+
+        JLabel titleLabel = new JLabel("KI5SK SERVICE");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 36));
+        gbc.insets = new Insets(20, 100, 20, 100);
+        mainMenuPanel.add(titleLabel, gbc);
+
+
+        gbc.insets = new Insets(10, 100, 10, 100);
+
         JButton signUpButton = new JButton("Sign Up");
         JButton loginButton = new JButton("Login");
         JButton logoutButton = new JButton("Logout");
-        JButton exitButton =new JButton("exit");
+        JButton exitButton = new JButton("Exit");
+
+        Dimension buttonSize = new Dimension(250, 60);
+        signUpButton.setPreferredSize(buttonSize);
+        loginButton.setPreferredSize(buttonSize);
+        logoutButton.setPreferredSize(buttonSize);
+        exitButton.setPreferredSize(buttonSize);
 
         signUpButton.addActionListener(e -> userFrame.performSignUpGUI(signUpController, this));
         loginButton.addActionListener(e -> userFrame.performLoginGUI(loginController, this));
         logoutButton.addActionListener(e -> userFrame.performLogout(logoutController, this));
         exitButton.addActionListener(e -> System.exit(0));
 
-        mainMenuPanel.add(signUpButton);
-        mainMenuPanel.add(loginButton);
-        mainMenuPanel.add(logoutButton);
-        mainMenuPanel.add(exitButton);
+        mainMenuPanel.add(signUpButton, gbc);
+        mainMenuPanel.add(loginButton, gbc);
+        mainMenuPanel.add(logoutButton, gbc);
+        mainMenuPanel.add(exitButton, gbc);
 
         cardPanel.add(mainMenuPanel, "Main Menu");
 
@@ -58,6 +76,8 @@ public class MainFrame extends JFrame {
 
         setVisible(true);
     }
+
+
 
     public static void main(String[] args) {
         UserDAO userDAO = new UserDAOImpl();
