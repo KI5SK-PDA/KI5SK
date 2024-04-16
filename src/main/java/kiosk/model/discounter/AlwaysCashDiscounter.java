@@ -6,7 +6,7 @@ import java.time.LocalTime;
 
 public class AlwaysCashDiscounter extends CashDiscounter {
 
-    public AlwaysCashDiscounter(Money discountAmount) {
+    AlwaysCashDiscounter(Money discountAmount) {
         super(discountAmount);
     }
 
