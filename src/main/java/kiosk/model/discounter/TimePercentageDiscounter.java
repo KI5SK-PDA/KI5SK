@@ -1,8 +1,11 @@
 package kiosk.model.discounter;
 
 import common.vo.Money;
+import kiosk.model.menu.CategoryId;
+import kiosk.model.menu.Menu;
 
 import java.time.LocalTime;
+import java.util.Optional;
 
 public class TimePercentageDiscounter extends PercentageDiscounter {
     private final LocalTime startTime;
@@ -12,6 +15,10 @@ public class TimePercentageDiscounter extends PercentageDiscounter {
         super(discountRate);
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public static TimePercentageDiscounter create(double discountRate, LocalTime startTime, LocalTime endTime){
+        return new TimePercentageDiscounter(discountRate, startTime, endTime);
     }
 
     public Money getDiscountPrice(Money price) {
