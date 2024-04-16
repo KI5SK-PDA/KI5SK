@@ -1,6 +1,8 @@
 package view.menu;
 
 import shoppingbasket.controller.SelectedMenuObserver;
+import shoppingbasket.controller.SelectedMenuSubject;
+import shoppingbasket.controller.ShoppingBasketController;
 import shoppingbasket.service.ShoppingBasketService;
 import shoppingbasket.service.dto.res.SelectedMenuResponse;
 import shoppingbasket.service.dto.res.SelectedOptionResponse;
@@ -21,12 +23,14 @@ public class ShoppingBasketPanel extends JPanel implements ActionListener, Selec
     JButton purchaseButton = new JButton("결제");
     PurchaseDialog purchaseDialog;
 
+    private final SelectedMenuSubject selectedMenuSubject;
     private final ShoppingBasketService shoppingBasketService;
 
     private JFrame parentFrame;
 
-    public ShoppingBasketPanel(ShoppingBasketService shoppingBasketService, JFrame parentFrame) {
-        this.shoppingBasketService = shoppingBasketService;
+    public ShoppingBasketPanel(ShoppingBasketController shoppingBasketController, JFrame parentFrame) {
+        this.selectedMenuSubject = shoppingBasketController;
+        this.shoppingBasketService = shoppingBasketController;
         this.parentFrame = parentFrame;
 
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -56,7 +60,9 @@ public class ShoppingBasketPanel extends JPanel implements ActionListener, Selec
     public void actionPerformed(ActionEvent e) {
         if(purchaseButton.equals(e.getSource())){
             // 결제 창 구현
-            purchaseDialog = new PurchaseDialog(parentFrame, "결제");
+
+            purchaseDialog = new PurchaseDialog(parentFrame, "결제", shoppingBasketService);
+            selectedMenuSubject.registerObserver(purchaseDialog);
             purchaseDialog.setVisible(true);
         }
     }

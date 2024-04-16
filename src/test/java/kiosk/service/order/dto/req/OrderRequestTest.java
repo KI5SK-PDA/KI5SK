@@ -19,7 +19,7 @@ class OrderRequestTest {
                 OrderRequest.SelectedMenuInfo.builder()
                     .menuId("id")
                     .quantity(12321)
-                    .selectedOptions(Arrays.asList("1","2","3"))
+//                    .selectedOptions(Arrays.asList("1","2","3"))
                     .build()
             ))
             .build();

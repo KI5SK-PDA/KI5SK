@@ -11,7 +11,6 @@ public class PurchaseCard extends JButton {
 
     public PurchaseCard(Card card){
         setLayout(new BorderLayout());
-        setBackground(Color.YELLOW);
 
         setPreferredSize(new Dimension(450, 60));
 
