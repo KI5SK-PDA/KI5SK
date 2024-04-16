@@ -4,7 +4,7 @@ import user.dao.UserDAO;
 import user.dao.UserDAOImpl;
 import user.view.UserInputHandler;
 import user.view.UserView;
-import user.view.MainView;
+import user.view.MainFrame;
 
 public class UserController {
     private UserDAO userDAO;
@@ -13,7 +13,7 @@ public class UserController {
     private SignUpController signUpController;
     private LoginController loginController;
     private LogoutController logoutController;
-    private MainView mainView;
+    private MainFrame mainFrame;
 
     public UserController() {
         this.userDAO = UserDAOImpl.getInstance();
@@ -23,10 +23,10 @@ public class UserController {
         this.loginController = new LoginController(userDAO);
         this.logoutController = new LogoutController();
 
-        this.mainView = new MainView(userView, userInputHandler, signUpController, loginController, logoutController);
+        this.mainFrame = new MainFrame(userView, userInputHandler, signUpController, loginController, logoutController);
     }
 
     public void start() {
-        mainView.start();
+        mainFrame.setVisible(true);
     }
 }
