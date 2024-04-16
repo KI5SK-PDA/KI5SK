@@ -4,10 +4,7 @@ import common.vo.Money;
 import kiosk.model.discounter.AlwaysCashDiscounter;
 import kiosk.model.discounter.Discounter;
 import kiosk.model.discounter.TimePercentageDiscounter;
-import kiosk.model.menu.Category;
-import kiosk.model.menu.CategoryId;
-import kiosk.model.menu.CategoryRepository;
-import kiosk.model.menu.Menu;
+import kiosk.model.menu.*;
 import kiosk.model.store.Store;
 import kiosk.model.store.StoreId;
 import kiosk.model.store.StoreRepository;
@@ -110,14 +107,37 @@ public class MenuService implements GetMenuService, InsertMenuService {
     }
 
     @Override
-    public void insertOptionGroup(String menuId, String name) {
+    public String insertOptionGroup(String menuId, String name) {
         Category category = categoryRepository.findById(CategoryId.of(toCategoryIdFrom(menuId))).orElseThrow(
                 () -> new RuntimeException("Category not found"));
-//        category.getMenus().forEach();
+        OptionGroupMenu optionGroupMenu = OptionGroupMenu.create(name);
+        category.getMenus().forEach(menu -> {
+            if(menu.getId().toString() == menuId){
+                menu.updateOptionGroups(optionGroupMenu);
+            }
+        });
+
+        return optionGroupMenu.getId();
     }
 
     @Override
-    public void insertOptionMenu(String optionGroupId, List<OptionMenuInfo> optionMenus) {
+    public String insertOptionMenu(String menuId, String optionGroupId, String name, int price) {
+        Category category = categoryRepository.findById(CategoryId.of(toCategoryIdFrom(menuId))).orElseThrow(
+                () -> new RuntimeException("Category not found"));
+
+        OptionMenu optionMenu = OptionMenu.create(name, Money.of(price));
+
+        category.getMenus().forEach(menu -> {
+            if(menu.getId().toString() == menuId){
+                menu.getAllOptionMenus().forEach(optionGroupMenu -> {
+                    if(optionGroupId.toString() == optionGroupMenu.getId()){
+                        optionGroupMenu.updateOptionMenus(optionMenu);
+                    }
+                });
+            }
+        });
+
+        return optionMenu.getId().toString();
 
     }
 

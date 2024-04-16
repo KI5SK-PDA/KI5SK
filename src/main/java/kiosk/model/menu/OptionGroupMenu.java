@@ -2,6 +2,7 @@ package kiosk.model.menu;
 
 import lombok.Getter;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -13,9 +14,13 @@ public class OptionGroupMenu {
     private String name;
     private List<OptionMenu> optionMenus;
 
-    public OptionGroupMenu(String name){
+    private OptionGroupMenu(String name){
         this.name = name;
         this.optionMenus = new ArrayList<>();
+    }
+
+    public static OptionGroupMenu create(String name){
+        return new OptionGroupMenu(name);
     }
     public void updateOptionMenus(OptionMenu optionMenu){
         optionMenus.add(optionMenu);
