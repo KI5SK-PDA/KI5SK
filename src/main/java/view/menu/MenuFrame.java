@@ -35,7 +35,11 @@ public class MenuFrame extends JFrame {
         header.setFont(new Font("Arial", Font.BOLD, 40));
         header.setHorizontalAlignment(SwingConstants.CENTER);
         sideBox.add(header);
-        sideBox.add(new ShoppingBasketPanel());
+
+        ShoppingBasketPanel shoppingBasketPanel = new ShoppingBasketPanel();
+        shoppingBasketPanel.setMaximumSize(new Dimension(480, 1080)); // 가로 480px, 세로는 제한 없음
+        sideBox.add(shoppingBasketPanel);
+
 
 
         // 메뉴가져오기 이후라 가정
@@ -121,7 +125,7 @@ public class MenuFrame extends JFrame {
         );
 
         Box categoryTaps = Box.createHorizontalBox();
-        for(int i=0;i<categoryNames.size();i++) {
+        for(int i=0; i<categoryNames.size(); i++) {
             CategoryInfo categoryInfo = categoryNames.get(i);
             JButton tapButton = new JButton(categoryInfo.getName());
             JPanel tap = new CategoryTapButton(tapButton, new TapChangeListener());
@@ -162,3 +166,7 @@ public class MenuFrame extends JFrame {
         }
     }
 }
+/*
+* 수정해야 할 부분:
+* grid 달아놓은거 크기 깨지는 부분 (menugridpanel)
+* */
