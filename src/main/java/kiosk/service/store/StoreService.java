@@ -2,6 +2,7 @@ package kiosk.service.store;
 
 import common.vo.Money;
 import kiosk.model.store.Store;
+import kiosk.model.store.StoreId;
 import kiosk.model.store.StoreRepository;
 import kiosk.service.store.dto.req.LaunchStoreRequest;
 import kiosk.service.store.dto.res.StoreResponse;
@@ -28,6 +29,18 @@ public class StoreService implements CommonStoreService, AdminStoreService {
                 .imagePath(store.getImagePath())
             .build())
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public StoreResponse getStoreById(String id) {
+        Store store = storeRepository.findById(StoreId.of(id)).orElseThrow(
+            () -> new RuntimeException("Store with id " + id + " not found"));
+
+        return StoreResponse.builder()
+            .id(store.getId().toString())
+            .name(store.getName())
+            .imagePath(store.getImagePath())
+            .build();
     }
 
     @Override

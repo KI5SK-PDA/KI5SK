@@ -23,11 +23,6 @@ public class MenuService implements GetMenuService {
         Store store = storeRepository.findById(StoreId.of(storeId)).orElseThrow(
             () -> new RuntimeException("Store not found"));
 
-        store.getMenuIds();
-
-
-
-
         return List.of();
     }
 }
