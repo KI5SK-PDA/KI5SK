@@ -1,6 +1,6 @@
 package card.controller;
 
-import view.card.CardView;
+import view.card.CardFrame;
 import card.vo.Card;
 import card.vo.Purchase;
 
@@ -17,7 +17,7 @@ public class CardController {
     }
 
     public void runView(){
-        new CardView(this);
+        new CardFrame(this);
     }
 
     // 카드 추가
