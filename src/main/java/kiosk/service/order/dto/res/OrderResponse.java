@@ -1,6 +1,5 @@
 package kiosk.service.order.dto.res;
 
-import kiosk.service.order.dto.req.OrderRequest;
 import lombok.*;
 
 import java.util.List;
