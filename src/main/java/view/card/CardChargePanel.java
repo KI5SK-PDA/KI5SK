@@ -1,4 +1,4 @@
-package card.view;
+package view.card;
 
 import card.controller.CardController;
 import card.vo.Card;

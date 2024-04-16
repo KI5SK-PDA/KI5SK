@@ -1,4 +1,4 @@
-package card.view;
+package view.card;
 
 import card.controller.CardController;
 
@@ -18,6 +18,8 @@ public class CardView extends JFrame implements ActionListener {
     JButton btnDeleteCard = new JButton("카드 삭제");
 
     List<UpdatableJPanel> panels = new ArrayList<>();
+
+    JPanel btns = new JPanel();
     JButton[] buttons = {btnInsertCard, btnViewCards, btnChargeCard, btnDeleteCard};
 
     private CardController cardController;

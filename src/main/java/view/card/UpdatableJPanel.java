@@ -1,4 +1,4 @@
-package card.view;
+package view.card;
 
 import javax.swing.*;
 

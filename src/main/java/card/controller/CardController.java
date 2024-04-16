@@ -1,6 +1,6 @@
 package card.controller;
 
-import card.view.CardView;
+import view.card.CardView;
 import card.vo.Card;
 import card.vo.Purchase;
 
