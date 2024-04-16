@@ -2,6 +2,7 @@ package card.service;
 
 import card.model.CardDAOImpl;
 import card.service.dto.PurchaseDTO;
+import card.service.dto.req.PurchaseRequest;
 import card.service.dto.res.PurchaseResponse;
 import card.vo.Purchase;
 import common.vo.Money;
@@ -20,11 +21,11 @@ public class PurchaseServiceImpl implements PurchaseService{
     }
 
     @Override
-    public PurchaseResponse purchase(PurchaseDTO purchaseDTO) {
-        String cno = purchaseDTO.getCno();
-        String cpw = purchaseDTO.getCpw();
-        Money money = purchaseDTO.getMoney();
-        String store = purchaseDTO.getStore();
+    public PurchaseResponse purchase(PurchaseRequest purchaseRequest) {
+        String cno = purchaseRequest.getCno();
+        String cpw = purchaseRequest.getCpw();
+        Money money = purchaseRequest.getMoney();
+        String store = purchaseRequest.getStore();
 
         PurchaseResponse response = new PurchaseResponse();
 
