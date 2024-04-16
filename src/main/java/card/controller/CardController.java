@@ -3,6 +3,7 @@ package card.controller;
 import card.service.PurchaseService;
 import card.service.PurchaseServiceImpl;
 import card.service.dto.PurchaseDTO;
+import card.service.dto.req.PurchaseRequest;
 import card.service.dto.res.PurchaseResponse;
 import card.vo.Card;
 import card.vo.Company;
@@ -39,8 +40,8 @@ public class CardController {
     }
 
     // 결제
-    public PurchaseResponse purchase(PurchaseDTO purchaseDTO) {
-        return purchaseService.purchase(purchaseDTO);
+    public PurchaseResponse purchase(PurchaseRequest purchaseRequest) {
+        return purchaseService.purchase(purchaseRequest);
 
     }
     // 카드 조회 - cno
