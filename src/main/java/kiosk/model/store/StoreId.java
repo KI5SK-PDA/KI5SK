@@ -16,6 +16,10 @@ public class StoreId {
         return new StoreId(String.format("%03d", id));
     }
 
+    public static StoreId of(String id) {
+        return new StoreId(id);
+    }
+
     @Override
     public String toString() {
         return id;

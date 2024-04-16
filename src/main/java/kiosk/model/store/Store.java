@@ -17,7 +17,7 @@ public class Store {
     private String name;
     private Money balance;
     private String imagePath;
-    private List<String> menuIds; // TODO: Menu ID로 바꾸기
+    private List<String> menuIds; // TODO: Category ID로 바꾸기
 
     private Store(String name, Money balance, String imagePath) {
         this.name = name;
