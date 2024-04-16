@@ -3,27 +3,27 @@ package user.controller;
 import user.dao.UserDAO;
 import user.dao.UserDAOImpl;
 import user.view.UserInputHandler;
-import user.view.UserView;
+import user.view.UserFrame;
 import user.view.MainFrame;
 
-public class UserController {
+public class MainController {
     private UserDAO userDAO;
     private UserInputHandler userInputHandler;
-    private UserView userView;
+    private UserFrame userFrame;
     private SignUpController signUpController;
     private LoginController loginController;
     private LogoutController logoutController;
     private MainFrame mainFrame;
 
-    public UserController() {
+    public MainController() {
         this.userDAO = UserDAOImpl.getInstance();
         this.userInputHandler = new UserInputHandler();
-        this.userView = new UserView();
+        this.userFrame = new UserFrame();
         this.signUpController = new SignUpController(userDAO);
         this.loginController = new LoginController(userDAO);
         this.logoutController = new LogoutController();
 
-        this.mainFrame = new MainFrame(userView, signUpController, loginController, logoutController);
+        this.mainFrame = new MainFrame(userFrame, signUpController, loginController, logoutController);
     }
 
     public void start() {

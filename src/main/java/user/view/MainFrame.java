@@ -12,13 +12,13 @@ import java.awt.*;
 public class MainFrame extends JFrame {
     private CardLayout cardLayout;
     private JPanel cardPanel;
-    private UserView userView;
+    private UserFrame userFrame;
     private SignUpController signUpController;
     private LoginController loginController;
     private LogoutController logoutController;
 
-    public MainFrame(UserView userView, SignUpController signUpController, LoginController loginController, LogoutController logoutController) {
-        this.userView = userView;
+    public MainFrame(UserFrame userFrame, SignUpController signUpController, LoginController loginController, LogoutController logoutController) {
+        this.userFrame = userFrame;
         this.signUpController = signUpController;
         this.loginController = loginController;
         this.logoutController = logoutController;
@@ -34,33 +34,27 @@ public class MainFrame extends JFrame {
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
-        JPanel mainMenuPanel = new JPanel();
-        mainMenuPanel.setLayout(new GridLayout(1, 4));
+        JPanel mainMenuPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 50));
         JButton signUpButton = new JButton("Sign Up");
         JButton loginButton = new JButton("Login");
         JButton logoutButton = new JButton("Logout");
         JButton exitButton =new JButton("exit");
 
-        signUpButton.addActionListener(e -> userView.performSignUpGUI(signUpController, this));
-        loginButton.addActionListener(e -> userView.performLoginGUI(loginController, this));
-        logoutButton.addActionListener(e -> userView.performLogout(logoutController, this));
+        signUpButton.addActionListener(e -> userFrame.performSignUpGUI(signUpController, this));
+        loginButton.addActionListener(e -> userFrame.performLoginGUI(loginController, this));
+        logoutButton.addActionListener(e -> userFrame.performLogout(logoutController, this));
         exitButton.addActionListener(e -> System.exit(0));
-
 
         mainMenuPanel.add(signUpButton);
         mainMenuPanel.add(loginButton);
         mainMenuPanel.add(logoutButton);
         mainMenuPanel.add(exitButton);
 
-
         cardPanel.add(mainMenuPanel, "Main Menu");
-
 
         add(cardPanel, BorderLayout.CENTER);
 
-
         cardLayout.show(cardPanel, "Main Menu");
-
 
         setVisible(true);
     }
@@ -71,7 +65,7 @@ public class MainFrame extends JFrame {
         LoginController loginController = new LoginController(userDAO);
         LogoutController logoutController = new LogoutController();
 
-        UserView userView = new UserView();
-        new MainFrame(userView, signUpController, loginController, logoutController);
+        UserFrame userFrame = new UserFrame();
+        new MainFrame(userFrame, signUpController, loginController, logoutController);
     }
 }

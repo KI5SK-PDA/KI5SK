@@ -8,10 +8,9 @@ import user.model.UserSession;
 
 import javax.swing.*;
 
-public class UserView {
+public class UserFrame {
 
-    public UserView() {
-
+    public UserFrame() {
     }
 
     public void performLogout(LogoutController logoutController, JFrame parentFrame) {
@@ -40,6 +39,11 @@ public class UserView {
             String upw = new String(upwField.getPassword()).trim();
             String uname = unameField.getText().trim();
 
+            if (!InputValidator.isValidIdOrPassword(uid) || !InputValidator.isValidIdOrPassword(upw) || !InputValidator.isValidInput(uname)) {
+                JOptionPane.showMessageDialog(parentFrame, "Invalid input.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             if (signUpController.doesUserIdExist(uid)) {
                 JOptionPane.showMessageDialog(parentFrame, "Already exists.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -51,6 +55,10 @@ public class UserView {
     }
 
     public void performLoginGUI(LoginController loginController, JFrame parentFrame) {
+        if (UserSession.isLoggedIn()) {
+            JOptionPane.showMessageDialog(parentFrame, "Already logged in", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         JTextField uidField = new JTextField();
         JPasswordField upwField = new JPasswordField();
 
@@ -63,6 +71,11 @@ public class UserView {
         if (option == JOptionPane.OK_OPTION) {
             String uid = uidField.getText().trim();
             String upw = new String(upwField.getPassword()).trim();
+
+            if (!InputValidator.isValidIdOrPassword(uid) || !InputValidator.isValidIdOrPassword(upw)) {
+                JOptionPane.showMessageDialog(parentFrame, "Invalid input.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             User user = loginController.login(uid, upw);
             if (user != null) {

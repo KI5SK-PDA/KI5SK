@@ -1,8 +1,8 @@
-import user.controller.UserController;
+import user.controller.MainController;
 
 public class KI5SKApp {
     public static void main(String[] args) {
-        UserController userController = new UserController();
-        userController.start();
+        MainController mainController = new MainController();
+        mainController.start();
     }
 }
