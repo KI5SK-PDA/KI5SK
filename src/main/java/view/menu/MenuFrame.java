@@ -5,6 +5,7 @@ import kiosk.service.menu.GetMenuService;
 import kiosk.service.menu.dto.res.CategoryInfo;
 import kiosk.service.menu.dto.res.MenuInfo;
 import kiosk.service.store.CommonStoreService;
+import shoppingbasket.controller.ShoppingBasketController;
 import view.controller.BasicTransition;
 
 import javax.swing.*;
@@ -22,8 +23,10 @@ public class MenuFrame extends JFrame {
     private List<JButton> taps = new ArrayList<>();
     private List<JPanel> menuPanels = new ArrayList<>();
     private Box menuList = Box.createVerticalBox();
+    private final ShoppingBasketController shoppingBasketController;
 
-    public MenuFrame(String storeId, BasicTransition backToStore) {
+    public MenuFrame(String storeId, BasicTransition backToStore, ShoppingBasketController shoppingBasketController) {
+        this.shoppingBasketController = shoppingBasketController;
         setTitle("메뉴");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(0,1, 20,20));
@@ -42,6 +45,7 @@ public class MenuFrame extends JFrame {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                shoppingBasketController.clear();
                 backToStore.switchScreen();
             }
         });
@@ -50,11 +54,10 @@ public class MenuFrame extends JFrame {
         headerBox.add(backButton);
         sideBox.add(headerBox);
 
-        ShoppingBasketPanel shoppingBasketPanel = new ShoppingBasketPanel(this);
+        ShoppingBasketPanel shoppingBasketPanel = new ShoppingBasketPanel(shoppingBasketController);
+        shoppingBasketController.registerObserver(shoppingBasketPanel);
         shoppingBasketPanel.setMaximumSize(new Dimension(480, 1080)); // 가로 480px, 세로는 제한 없음
         sideBox.add(shoppingBasketPanel);
-
-
 
         // 메뉴가져오기 이후라 가정
         List<CategoryInfo> categoryNames = Arrays.asList(
@@ -89,21 +92,21 @@ public class MenuFrame extends JFrame {
                 .menus(Arrays.asList(
                     MenuInfo.builder()
                         .name("짜장면 2+ 탕수육")
-                        .id("110-01-000")
+                        .id("110-01-001")
                         .originalPrice(10000)
                         .discountPrice(Optional.of(3000))
                         .discountInfo(Optional.of("1000원 할인"))
                         .build(),
                     MenuInfo.builder()
                         .name("짬뽕2+ 탕수육")
-                        .id("110-01-001")
+                        .id("110-01-002")
                         .originalPrice(15000)
                         .discountPrice(Optional.of(4000))
                         .discountInfo(Optional.of("1000원 할인"))
                         .build(),
                     MenuInfo.builder()
                         .name("탕수육+양장피")
-                        .id("110-01-002")
+                        .id("110-01-003")
                         .originalPrice(24000)
                         .discountPrice(Optional.empty())
                         .discountInfo(Optional.empty())
@@ -115,21 +118,21 @@ public class MenuFrame extends JFrame {
                 .menus(Arrays.asList(
                     MenuInfo.builder()
                         .name("단무지")
-                        .id("110-01-000")
+                        .id("110-01-004")
                         .originalPrice(4000)
                         .discountPrice(Optional.of(3000))
                         .discountInfo(Optional.of("1000원 할인"))
                         .build(),
                     MenuInfo.builder()
                         .name("군만두")
-                        .id("110-01-001")
+                        .id("110-01-005")
                         .originalPrice(5000)
                         .discountPrice(Optional.of(4000))
                         .discountInfo(Optional.of("1000원 할인"))
                         .build(),
                     MenuInfo.builder()
                         .name("콜라")
-                        .id("110-01-002")
+                        .id("110-01-006")
                         .originalPrice(14000)
                         .discountPrice(Optional.empty())
                         .discountInfo(Optional.empty())
@@ -146,7 +149,7 @@ public class MenuFrame extends JFrame {
 
             taps.add(tapButton);
             categoryTaps.add(tap);
-            JPanel menuPanel = new MenuGridPanel(categoryInfo.getMenus(), shoppingBasketPanel);
+            JPanel menuPanel = new MenuGridPanel(categoryInfo.getMenus(), shoppingBasketController);
             menuPanel.setVisible(false);
             menuPanels.add(menuPanel);
         }
