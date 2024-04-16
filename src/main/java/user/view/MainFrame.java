@@ -37,22 +37,27 @@ public class MainFrame extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(10, 100, 10, 100);
+        gbc.insets = new Insets(15, 100, 15, 100);
 
         JLabel titleLabel = new JLabel("KI5SK SERVICE");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 36));
-        gbc.insets = new Insets(20, 100, 20, 100);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 48));
+        gbc.insets = new Insets(30, 100, 30, 100);
         mainMenuPanel.add(titleLabel, gbc);
 
-
-        gbc.insets = new Insets(10, 100, 10, 100);
+        gbc.insets = new Insets(15, 100, 15, 100);
 
         JButton signUpButton = new JButton("Sign Up");
         JButton loginButton = new JButton("Login");
         JButton logoutButton = new JButton("Logout");
         JButton exitButton = new JButton("Exit");
 
-        Dimension buttonSize = new Dimension(250, 60);
+        Font buttonFont = new Font("Arial", Font.BOLD, 28);
+        signUpButton.setFont(buttonFont);
+        loginButton.setFont(buttonFont);
+        logoutButton.setFont(buttonFont);
+        exitButton.setFont(buttonFont);
+
+        Dimension buttonSize = new Dimension(250, 80);
         signUpButton.setPreferredSize(buttonSize);
         loginButton.setPreferredSize(buttonSize);
         logoutButton.setPreferredSize(buttonSize);
@@ -76,7 +81,6 @@ public class MainFrame extends JFrame {
 
         setVisible(true);
     }
-
 
 
     public static void main(String[] args) {
