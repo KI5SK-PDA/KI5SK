@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CommonStoreService {
     List<StoreResponse> getAllStore();
+    StoreResponse getStoreById(String id);
 }

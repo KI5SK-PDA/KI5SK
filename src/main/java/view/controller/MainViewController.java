@@ -27,7 +27,6 @@ public class MainViewController {
         public void switchMenu(String storeId) {
             storeFrame.dispose();
             menuFrame = new MenuFrame(storeId);
-            menuFrame.setVisible(true);
         }
     }
 }
