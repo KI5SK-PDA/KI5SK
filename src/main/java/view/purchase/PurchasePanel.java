@@ -18,7 +18,7 @@ public class PurchasePanel extends JPanel implements ActionListener {
     CardController cardController;
     List<Card> cards;
     JPanel cardPanelLayout = new JPanel();
-    List<JButton> cardsPanel;
+    List<JButton> cardPanels;
 
     public PurchasePanel(){
         cardController = new CardController();
@@ -26,6 +26,7 @@ public class PurchasePanel extends JPanel implements ActionListener {
 
         laTitle.setFont(new Font("Arial", Font.BOLD, 32));
         laTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        laTitle.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
         add(laTitle, BorderLayout.NORTH);
 
         add(cardPanelLayout, BorderLayout.CENTER);
@@ -49,12 +50,12 @@ public class PurchasePanel extends JPanel implements ActionListener {
 
     public void viewCardPanel(){
         cardPanelLayout.setLayout(new FlowLayout(FlowLayout.CENTER,10, 10));
-        cardsPanel = new ArrayList<>();
+        cardPanels = new ArrayList<>();
         System.out.println();
         for(Card card : cards){
             PurchaseCard purchaseCard = new PurchaseCard(card);
             purchaseCard.addActionListener(this);
-            cardsPanel.add(purchaseCard);
+            cardPanels.add(purchaseCard);
             cardPanelLayout.add(purchaseCard);
         }
     }
@@ -62,7 +63,7 @@ public class PurchasePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         for(int i=0; i<cards.size(); i++){
-            if(cardsPanel.get(i).equals(e.getSource())){
+            if(cardPanels.get(i).equals(e.getSource())){
                 String cardNumber = cards.get(i).getCno();
                 String cardPassword = new String(pfPassword.getPassword());
                 // TODO 결제 진행코드

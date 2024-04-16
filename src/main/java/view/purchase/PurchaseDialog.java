@@ -1,23 +1,37 @@
 package view.purchase;
 
-import view.menu.MenuPanel;
+import shoppingbasket.controller.SelectedMenuObserver;
+import shoppingbasket.service.ShoppingBasketService;
+import shoppingbasket.service.dto.res.SelectedMenuResponse;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
-public class PurchaseDialog extends JDialog {
+public class PurchaseDialog extends JDialog implements SelectedMenuObserver {
 
-    JPanel menuPanel = new SelectedMenuPanel();
     JPanel purchasePanel = new PurchasePanel();
+    private final ShoppingBasketService shoppingBasketService;
+    private final List<SelectedMenuResponse> selectedMenuResponses;
 
-    public PurchaseDialog(JFrame frame, String title){
+    public PurchaseDialog(JFrame frame, String title, ShoppingBasketService shoppingBasketService){
         super(frame, title);
+        this.shoppingBasketService = shoppingBasketService;
+        this.selectedMenuResponses = shoppingBasketService.getAllSelectedMenus();
+
         setLayout(new GridLayout(0,2,10,10));
         setSize(1000, 600);
 
+
+        JPanel menuPanel = new SelectedMenuPanel(shoppingBasketService);
         add(menuPanel);
         add(purchasePanel);
 
         setResizable(false);
+    }
+
+    @Override
+    public void update() {
+
     }
 }
