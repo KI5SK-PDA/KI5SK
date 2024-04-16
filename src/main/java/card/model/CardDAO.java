@@ -14,7 +14,7 @@ public interface CardDAO {
     List<Card> findCardsByUser(String uid);
     Card chargeCard(String cno, Money money);
     Card deleteCard(String cno);
-    List<Purchase> findPurchasesByCno(String cno);
+//    List<Purchase> findPurchasesByCno(String cno);
     boolean authenticateCard(String cno, String cpw);
     boolean canPurchase(String cno, Money money);
     PurchaseDTO purchase(String cno, String cpw, Date date, String store, Money money);

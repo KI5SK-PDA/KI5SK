@@ -1,7 +1,9 @@
 package kiosk.service.menu;
 
+import common.vo.Money;
 import kiosk.model.discounter.TimePercentageDiscounter;
 import kiosk.model.menu.Category;
+import kiosk.model.menu.CategoryId;
 import kiosk.model.menu.CategoryRepository;
 import kiosk.model.menu.Menu;
 import kiosk.model.store.Store;
@@ -10,7 +12,9 @@ import kiosk.model.store.StoreRepository;
 import kiosk.service.menu.dto.res.CategoryInfo;
 import kiosk.service.menu.dto.res.MenuInfo;
 
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MenuService implements GetMenuService, InsertMenuService {
@@ -56,7 +60,12 @@ public class MenuService implements GetMenuService, InsertMenuService {
 
     @Override
     public void insertBreakfastDiscountMenu(String categoryId, String name, int price) {
-        Menu.create(name, Money.of(price), Optional.of(new TimePercentageDiscounter()), CategoryId.of(categoryId))
+        Menu.create(
+                name,
+                Money.of(price),
+                Optional.of(
+                        new TimePercentageDiscounter(20, LocalTime.of(12,12), LocalTime.of(10,10))),
+                CategoryId.of(categoryId));
     }
 
     @Override
