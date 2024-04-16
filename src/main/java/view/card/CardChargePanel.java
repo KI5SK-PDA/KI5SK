@@ -57,30 +57,11 @@ public class CardChargePanel extends UpdatableJPanel implements ActionListener {
     }
 
     public JButton createCardView(int i, Card card){
-        JButton jButton = new JButton();
-        jButton.setSize(940, 60);
-        jButton.setBackground(new Color(219, 219, 219));
+        JButton jButton = new CardItem(card);
+
         jButton.setBounds(20, i*70+10+100, 940, 60);
-        jButton.setLayout(null);
-        add(jButton);
-
-        JLabel laCardNo = new JLabel(card.getCno());
-        laCardNo.setBounds(20, 15, 300, 30);
-        laCardNo.setFont(new Font("Arial", Font.BOLD, 24));
-
-        JLabel laCardBank = new JLabel(card.getCompany().getCname());
-        laCardBank.setBounds(320, 15, 300, 30);
-        laCardBank.setFont(new Font("Arial", Font.PLAIN, 24));
-
-        JLabel laMoney = new JLabel(Integer.toString(card.getMoney().toInt())+"원");
-        laMoney.setBounds(720, 15, 300, 30);
-        laMoney.setFont(new Font("Arial", Font.PLAIN, 24));
-
-        jButton.add(laCardNo);
-        jButton.add(laCardBank);
-        jButton.add(laMoney);
-
         jButton.addActionListener(this);
+        add(jButton);
 
         return jButton;
     }
