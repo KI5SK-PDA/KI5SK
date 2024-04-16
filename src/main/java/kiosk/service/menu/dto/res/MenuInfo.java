@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -24,17 +25,20 @@ public class MenuInfo {
     private Optional<Integer> discountPrice;
     private Optional<String> discountInfo;
     private List<String> optionGroupIds;
-    private List<String> optionMenuIds;
+    private Map<String, List<String>> optionMenuIdsMap;
 
     public static MenuInfo from(Menu menu){
         List<String> optionGroupIds = menu.getOptionGroups().stream()
                 .map(OptionGroupMenu::getId)
                 .collect(Collectors.toList());
 
-        List<String> optionMenuIds = menu.getOptionGroups().stream()
-                .flatMap(optionGroupMenu -> optionGroupMenu.getAllOptionMenus().stream())
-                .map(OptionMenu::getId)
-                .collect(Collectors.toList());
+        Map<String, List<String>> optionMenuIdsMap = menu.getOptionGroups().stream()
+                .collect(Collectors.toMap(
+                        OptionGroupMenu::getId,
+                        optionGroupMenu -> optionGroupMenu.getAllOptionMenus().stream()
+                                .map(OptionMenu::getId)
+                                .collect(Collectors.toList())
+                ));
 
         return MenuInfo.builder()
                 .id(menu.getId().toString())
@@ -43,7 +47,7 @@ public class MenuInfo {
                 .discountPrice(Optional.ofNullable(menu.getDiscountPrice() == null? null: menu.getDiscountPrice().toInt()))
                 .discountInfo(Optional.ofNullable(menu.getDiscountInfo()))
                 .optionGroupIds(optionGroupIds)
-                .optionMenuIds(optionMenuIds)
+                .optionMenuIdsMap(optionMenuIdsMap)
                 .build();
     }
 }
