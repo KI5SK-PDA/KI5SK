@@ -11,9 +11,13 @@ public class OptionMenu {
     private final String name;
     private final Money price;
 
-    public OptionMenu(String name, Money price) {
+    private OptionMenu(String name, Money price) {
         this.name = name;
         this.price = price;
+    }
+
+    public static OptionMenu create(String name, Money price){
+        return new OptionMenu(name, price);
     }
 
     public Money getPrice() {
