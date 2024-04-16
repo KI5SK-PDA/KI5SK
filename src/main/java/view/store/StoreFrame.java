@@ -3,11 +3,11 @@ package view.store;
 import javax.swing.*;
 
 public class StoreFrame extends JFrame {
-    public StoreFrame() {
+    public StoreFrame(JPanel storeGridPanel) {
         setTitle("스토어 리스트");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JScrollPane scrollPane = new JScrollPane(new StoreGridPanel());
+        JScrollPane scrollPane = new JScrollPane(storeGridPanel);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Scroll Speed
         add(scrollPane);
 

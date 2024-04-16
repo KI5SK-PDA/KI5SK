@@ -1,6 +1,6 @@
 import kiosk.controller.AdminKioskController;
 import kiosk.service.store.dto.req.LaunchStoreRequest;
-import view.store.StoreFrame;
+import view.controller.MainViewController;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +10,7 @@ public class KI5SKApp {
 
     public static void main(String[] args) {
         initializeData();
-        new StoreFrame();
+        MainViewController.getInstance().run();
     }
 
     public static void initializeData() {

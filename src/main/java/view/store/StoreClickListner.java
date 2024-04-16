@@ -1,23 +1,22 @@
 package view.store;
 
-import view.menu.MenuFrame;
+import view.controller.StoreToMenu;
 
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class StoreClickListner implements MouseListener {
     private final String storeId;
+    private final StoreToMenu storeToMenu;
 
-    public StoreClickListner(String storeId) {
+    public StoreClickListner(String storeId, StoreToMenu storeToMenu) {
         this.storeId = storeId;
+        this.storeToMenu = storeToMenu;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        ((JComponent) e.getSource()).setVisible(false);
-        System.out.println(storeId);
-        new MenuFrame(storeId).setVisible(true);
+        storeToMenu.switchMenu(storeId);
     }
 
     @Override
