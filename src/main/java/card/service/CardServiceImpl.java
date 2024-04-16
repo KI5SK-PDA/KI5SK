@@ -57,11 +57,6 @@ public class CardServiceImpl implements CardService{
     }
 
 
-    @Override
-    public Purchase purchase(String cno, String cpw, String store, Money money) {
-        return null;
-    }
-
     public List<Purchase> findPurchasesByCno(String cno){
         if(cno != null){
             return cardDAO.findPurchasesByCno(cno);

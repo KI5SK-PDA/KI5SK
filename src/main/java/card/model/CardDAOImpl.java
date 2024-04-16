@@ -101,7 +101,7 @@ public class CardDAOImpl implements CardDAO{
     @Override
     public List<Purchase> findPurchasesByCno(String cno){
         List<Purchase> cnoPurchases = new ArrayList<>();
-        for(Map.Entry<String, Purchase> entry : puchases.entrySet()){
+        for(Map.Entry<String, Purchase> entry : purchases.entrySet()){
             if(cno.equals(entry.getValue().getCno())){
                 cnoPurchases.add(entry.getValue());
             }

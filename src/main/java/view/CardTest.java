@@ -24,6 +24,6 @@ public class CardTest {
         store= "홍콩반점";
         money = Money.of(0);
         cardController = getCardController();
-        cardController.purchase(cno, cpw, store, money);
+//        cardController.purchase(cno, cpw, store, money);
     }
 }
