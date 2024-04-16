@@ -30,7 +30,7 @@ public class PurchaseServiceImpl implements PurchaseService{
         PurchaseResponse response = new PurchaseResponse();
 
         if (cardDAO.authenticateCard(cno, cpw)) {
-            if (cardDAO.canPurchase(cno, money)) {
+            if (!cardDAO.canPurchase(cno, money)) {
                 response.setSuccess(false);
                 response.setMessage("카드 잔고보다 더 많은 금액을 결제할 수 없습니다.");
                 return response;
