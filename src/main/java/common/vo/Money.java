@@ -35,3 +35,4 @@ public class Money {
         return String.format("%d 원", this.amount);
     }
 }
+

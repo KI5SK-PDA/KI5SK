@@ -1,5 +1,6 @@
 package card.service;
 
+
 import card.model.CardDAO;
 import card.model.CardDAOImpl;
 import card.vo.Card;
@@ -13,10 +14,13 @@ import java.util.UUID;
 
 public class CardServiceImpl implements CardService{
 
-    private CardDAO cardDAO;
+    private final CardDAOImpl cardDAO;
 
-    public CardServiceImpl(){
-        cardDAO = new CardDAOImpl();
+    private CardServiceImpl(){
+        this.cardDAO = CardDAOImpl.getInstance();
+    }
+    public static CardServiceImpl getInstance(){
+        return new CardServiceImpl();
     }
 
     @Override
@@ -52,6 +56,7 @@ public class CardServiceImpl implements CardService{
         return null;
     }
 
+
     @Override
     public Purchase purchase(String cno, String cpw, String store, Money money) {
         return null;
@@ -77,4 +82,5 @@ public class CardServiceImpl implements CardService{
                         .append(uuid.substring(12,16));
         return formattedCardNo.toString();
     }
+
 }
