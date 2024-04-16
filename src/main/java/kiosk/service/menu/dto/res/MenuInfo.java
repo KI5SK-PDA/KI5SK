@@ -1,5 +1,6 @@
 package kiosk.service.menu.dto.res;
 
+import kiosk.model.menu.Menu;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,5 +20,12 @@ public class MenuInfo {
     private Optional<Integer> discountPrice;
     private Optional<String> discountInfo;
 
-
+    public static MenuInfo from(Menu menu){
+        return MenuInfo.builder()
+                .id(menu.getId().toString())
+                .name(menu.getName())
+                .originalPrice(menu.getOriginalPrice().toInt())
+                .discountPrice(Optional.ofNullable(menu.getDiscountPrice().toInt()))
+                .discountInfo(Optional.ofNullable(menu.getDiscountInfo())).build();
+    }
 }

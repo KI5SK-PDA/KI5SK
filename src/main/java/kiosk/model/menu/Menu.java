@@ -39,19 +39,19 @@ public class Menu {
     }
 
     public Money getDiscountPrice(){
-        if(discounter.isPresent()){
+        if(discounter.isPresent()) {
             return discounter.get().getDiscountPrice(this.originalPrice);
-        }else{
-            return null;
         }
+            return null;
+
     }
 
     public String getDiscountInfo(){
-        if(discounter.isPresent()){
+        if(discounter.isPresent()) {
             return discounter.get().getDiscountInfo();
-        }else{
-            return "할인 정보가 없습니다.";
         }
+
+        return null;
     }
 
     public void updateOptionGroups(OptionGroupMenu optionGroupMenu){

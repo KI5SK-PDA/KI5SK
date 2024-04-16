@@ -17,6 +17,10 @@ public class CategoryId {
         return new CategoryId(String.format("%s-%02d", storeId.toString(), id));
     }
 
+    public static CategoryId of(String id) {
+        return new CategoryId(id);
+    }
+
     @Override
     public String toString() {
         return id;
