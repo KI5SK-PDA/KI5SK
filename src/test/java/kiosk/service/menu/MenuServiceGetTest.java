@@ -3,6 +3,7 @@ package kiosk.service.menu;
 import common.vo.Money;
 import kiosk.model.discounter.AlwaysCashDiscounter;
 import kiosk.model.discounter.Discounter;
+import kiosk.model.discounter.TimePercentageDiscounter;
 import kiosk.model.menu.*;
 import kiosk.model.store.Store;
 import kiosk.model.store.StoreRepository;
@@ -10,11 +11,12 @@ import kiosk.service.menu.dto.res.CategoryInfo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 @DisplayName("MenuService 테스트")
-public class MenuServiceTest {
+public class MenuServiceGetTest {
     private final StoreRepository storeRepository = StoreRepository.getInstance();
     private final CategoryRepository categoryRepository = CategoryRepository.getInstance();
     private final MenuService menuService = MenuService.newInstance();
@@ -33,9 +35,11 @@ public class MenuServiceTest {
         store.updateCategoryId(category1.getId());
         store.updateCategoryId(category2.getId());
 
-        Optional<Discounter> discounter = Optional.of(new AlwaysCashDiscounter(Money.of(1000)));
-        OptionMenu optionMenu = new OptionMenu("옵션1", Money.of(1000));
-        OptionGroupMenu group = new OptionGroupMenu("그룹1");
+        Optional<Discounter> discounter = Optional.of(AlwaysCashDiscounter.create(Money.of(2000)));
+//        Optional<Discounter> discounter = Optional.of(TimePercentageDiscounter.create(0.2, LocalTime.of(23, 0), LocalTime.of(1, 0)));
+
+        OptionMenu optionMenu = OptionMenu.create("옵션1", Money.of(1000));
+        OptionGroupMenu group = OptionGroupMenu.create("그룹1");
         group.updateOptionMenus(optionMenu);
 
         Menu menu1 = Menu.create("짜장면", Money.of(10000), discounter, category1.getId());
