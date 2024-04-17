@@ -18,7 +18,7 @@ public class PurchaseDialog extends JDialog implements SelectedMenuObserver {
         super(frame, title);
         this.shoppingBasketService = shoppingBasketService;
         this.selectedMenuResponses = shoppingBasketService.getAllSelectedMenus();
-        purchasePanel = new PurchasePanel(shoppingBasketService);
+        purchasePanel = new PurchasePanel(shoppingBasketService, this);
 
         setLayout(new GridLayout(0,2,10,10));
         setSize(1000, 600);

@@ -28,9 +28,11 @@ public class PurchasePanel extends JPanel implements ActionListener {
     List<JButton> cardPanels;
     private final OrderService orderService;
     private final ShoppingBasketService shoppingBasketService;
+    private JDialog parentDialog;
 
-    public PurchasePanel(ShoppingBasketService shoppingBasketService){
+    public PurchasePanel(ShoppingBasketService shoppingBasketService, JDialog parentDialog){
         cardController = new CardController();
+        this.parentDialog = parentDialog;
         this.shoppingBasketService = shoppingBasketService;
         this.orderService = KioskController.newInstance();
         setLayout(new BorderLayout());
@@ -103,6 +105,26 @@ public class PurchasePanel extends JPanel implements ActionListener {
                 System.out.println(response.getMessage());
                 System.out.println(response.getAmountOfPurchase());
                 System.out.println(response.getAmountOfOrder());
+
+                if (response.isSuccess()) {
+                    JOptionPane.showMessageDialog(
+                        this,
+                        String.format("%s\n 주문금액: %d원\n할인적용금액: %d원\n",
+                            response.getMessage(),
+                            response.getAmountOfOrder(),
+                            response.getAmountOfPurchase()),
+                        "결제성공",
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
+                    shoppingBasketService.clear();
+                    parentDialog.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                        response.getMessage() ,
+                        "결제 실패",
+                        JOptionPane.ERROR_MESSAGE);
+                }
+
 
                 pfPassword.setText("");
             }
