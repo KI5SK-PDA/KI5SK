@@ -17,7 +17,7 @@
 ## Stacks
 
 ### Development
-![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=Notion&logoColor=white)
+![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=Java&logoColor=white)
 
 ### Communication
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
