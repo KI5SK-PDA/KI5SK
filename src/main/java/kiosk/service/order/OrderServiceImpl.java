@@ -37,18 +37,20 @@ public class OrderServiceImpl implements OrderService {
             Category category = categoryRepository.findById(CategoryId.of(categoryId))
                     .orElseThrow(() -> new RuntimeException("Can't find Category"));
 
+            Money menuMoney = Money.of(0);
             for(Menu menu: category.getMenus()) {
                 if(menu.getId().equals(MenuId.of(selectedMenuInfo.getMenuId()))) {
                     if (menu.getDiscounter().isEmpty()) {
-                        totalPrice = totalPrice.add(menu.getOriginalPrice());
+                        menuMoney = menuMoney.add(menu.getOriginalPrice());
                     } else {
-                        totalPrice = totalPrice.add(menu.getDiscountPrice());
+                        menuMoney = menuMoney.add(menu.getDiscountPrice());
                     }
-                    totalPrice = totalPrice.add(getSelectedOptionTotalPrice(menu, selectedMenuInfo.getSelectedOptionIds()));
+                    menuMoney = menuMoney.add(getSelectedOptionTotalPrice(menu, selectedMenuInfo.getSelectedOptionIds()));
+                    menuMoney = menuMoney.applyRate(selectedMenuInfo.getQuantity());
+
+                    totalPrice = totalPrice.add(menuMoney);
                 }
             }
-
-            System.out.println(totalPrice);
         }
 
         // 2. 결제 요청 준비
