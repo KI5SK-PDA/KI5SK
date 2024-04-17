@@ -1,8 +1,7 @@
 package card.model;
 
-import card.service.dto.PurchaseDTO;
+import card.interService.dto.PurchaseDTO;
 import card.vo.Card;
-import card.vo.Purchase;
 import common.vo.Money;
 
 import java.util.Date;

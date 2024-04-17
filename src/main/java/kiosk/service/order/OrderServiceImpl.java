@@ -1,8 +1,8 @@
 package kiosk.service.order;
 
-import card.service.PurchaseServiceImpl;
-import card.service.dto.req.PurchaseRequest;
-import card.service.dto.res.PurchaseResponse;
+import card.interService.PurchaseInterServiceImpl;
+import card.interService.dto.req.PurchaseRequest;
+import card.interService.dto.res.PurchaseResponse;
 import common.vo.Money;
 import kiosk.model.menu.*;
 import kiosk.service.order.dto.req.OrderRequest;
@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
         );
 
         // 3. 결제 요청 및 응답 처리
-        PurchaseServiceImpl purchaseService = PurchaseServiceImpl.getInstance();
+        PurchaseInterServiceImpl purchaseService = PurchaseInterServiceImpl.getInstance();
         PurchaseResponse purchaseResponse = purchaseService.purchase(purchaseRequest);
         if (purchaseResponse.isSuccess()) {
             // 결제 성공 시 로직
