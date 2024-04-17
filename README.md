@@ -11,13 +11,10 @@
 |[@kkh0331](https://github.com/kkh0331)|[@EastWon0103](https://github.com/EastWon0103)|[@allllfo](https://github.com/allllfo)|[@seohee99](https://github.com/seohee99)|[@jiminpark23](https://github.com/jiminpark23)|[@bookeers](https://github.com/bookeers)|
 |카드 담당|키오스크 담당|키오스크 담당|카드 담당|키오스크 담당|유저 담당|
 
-## Introduction
-//TODO 프로젝트 소개입니다.
-
 ## Stacks
 
 ### Development
-![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=Java&logoColor=white)
+![Java](https://img.shields.io/badge/java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white)
 
 ### Communication
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
@@ -25,7 +22,7 @@
 
 
 ## Architecture
-//TODO 아키텍처를 이 위치에 올리면 됩니다.
+//TODO 아키텍처 사진만 이 자리에 올려주세요~
 
 ## Features
 
@@ -47,11 +44,18 @@
 - 메뉴 장바구니에 담기 기능
 - 주문 개수 수정 및 메뉴 삭제 구현
 
-## Flow chart
-//TODO 흐름도 / 프로젝트 initialize 방식 구현
+## Execution
+최초 실행 시 화면 (User 기능 영역) </br>
+![image](https://github.com/KI5SK-PDA/KI5SK/assets/128025654/399cfb65-3cdc-41cf-a9c2-fd52dd6a4040)
 
-## Trouble Shooting
-//TODO 문제 발생 및 해결했던 방식
+로그인 후 키오스크 / 카드 선택 기능 </br>
+![image](https://github.com/KI5SK-PDA/KI5SK/assets/128025654/a246f482-cf3a-4539-a819-8f838681497e)
+카드 메뉴 진입 시 카드의 생성/조회/충전/삭제 기능 </br>
+![image](https://github.com/KI5SK-PDA/KI5SK/assets/128025654/3f697c91-8219-453e-a7d1-a79116204c06)
+키오스크 진입 시 식당 선택 기능 </br>
+![image](https://github.com/KI5SK-PDA/KI5SK/assets/128025654/be0fbe76-53e1-4ab1-a636-bca4d8a67d0e)
+키오스크 진입 후 식당 선택 시 메뉴 선택 기능 </br>
+![image](https://github.com/KI5SK-PDA/KI5SK/assets/128025654/60a7cce7-0b0d-4b77-bf90-cb56999567d7)
 
 ## Retrospect
 * 우리의 설계가 현실의 문제를 해결하는 것과 완벽한 시스템을 구현하는 행위 중 어떤 방향인지, 혼동이 있었다.
