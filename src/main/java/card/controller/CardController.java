@@ -1,33 +1,24 @@
 package card.controller;
 
-import card.service.PurchaseService;
-import card.service.PurchaseServiceImpl;
-import card.service.dto.PurchaseDTO;
-import card.service.dto.req.PurchaseRequest;
-import card.service.dto.res.PurchaseResponse;
+import card.interService.PurchaseInterServiceImpl;
+import card.interService.dto.req.PurchaseRequest;
+import card.interService.dto.res.PurchaseResponse;
 import card.vo.Card;
-import card.vo.Company;
-import card.vo.Purchase;
-import common.vo.Money;
-import user.model.User;
 import user.model.UserSession;
-import view.card.CardFrame;
 
 
 import card.service.CardServiceImpl;
-import view.CardTest;
-import java.util.Date;
+
 import java.util.List;
 
 public class CardController {
     // 1. 카드 추가 & 2. 카드 조회 & 3. 카드 충전 & 4. 카드 삭제 & 5. 카드 충전
     private final CardServiceImpl cardService;
-    private final PurchaseServiceImpl purchaseService;
+    private final PurchaseInterServiceImpl purchaseService;
 
     public CardController() {
         this.cardService = CardServiceImpl.getInstance();
-        this.purchaseService = PurchaseServiceImpl.getInstance();
-        new CardTest(this);
+        this.purchaseService = PurchaseInterServiceImpl.getInstance();
     }
 
     // 카드 추가

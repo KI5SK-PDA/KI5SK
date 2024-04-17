@@ -1,6 +1,6 @@
 package card.model;
 
-import card.service.dto.PurchaseDTO;
+import card.interService.dto.PurchaseDTO;
 import card.vo.Card;
 import card.vo.Purchase;
 import common.vo.Money;
@@ -100,14 +100,4 @@ public class CardDAOImpl implements CardDAO{
         return new PurchaseDTO(cno, cpw, discount_money, date, store);
     }
 
-//    @Override
-//    public List<Purchase> findPurchasesByCno(String cno){
-//        List<Purchase> cnoPurchases = new ArrayList<>();
-//        for(Map.Entry<String, Purchase> entry : purchases.entrySet()){
-//            if(cno.equals(entry.getValue().getCno())){
-//                cnoPurchases.add(entry.getValue());
-//            }
-//        }
-//        return cnoPurchases;
-//    }
 }
